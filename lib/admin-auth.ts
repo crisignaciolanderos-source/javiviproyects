@@ -42,12 +42,8 @@ export function loginDemo(email: string, password: string): boolean {
   return true;
 }
 
-export function resetCredentials() {
-  localStorage.removeItem(CRED_EMAIL_KEY);
-  localStorage.removeItem(CRED_PASS_KEY);
-  localStorage.removeItem(AUTH_KEY);
-  localStorage.removeItem("javivi_admin_email");
-}
+// resetCredentials eliminado: el admin se crea una sola vez.
+// Para restablecer, se debe borrar manualmente el localStorage del navegador.
 
 export function logout() {
   localStorage.removeItem(AUTH_KEY);

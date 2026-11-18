@@ -6,7 +6,7 @@ import Link from "next/link";
 import Topbar from "@/components/layout/topbar";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import { isAdminConfigured, isLoggedIn, loginDemo, getAdminEmail, hasCredentials, getDefaultEmail, resetCredentials } from "@/lib/admin-auth";
+import { isAdminConfigured, isLoggedIn, loginDemo, getAdminEmail, hasCredentials, getDefaultEmail } from "@/lib/admin-auth";
 import { createClient } from "@/lib/supabase/client";
 
 export default function AdminLoginPage() {
@@ -112,14 +112,7 @@ export default function AdminLoginPage() {
               {loading ? "Procesando..." : firstAccess ? "Crear contraseña" : "Ingresar"}
             </button>
           </form>
-          {!firstAccess && !isAdminConfigured() && (
-            <button
-              onClick={() => { resetCredentials(); window.location.reload(); }}
-              className="mt-4 text-[0.7rem] text-muted-2 hover:text-red transition underline"
-            >
-              Olvidé mi contraseña (restablecer)
-            </button>
-          )}
+          {/* El admin se crea una sola vez. No hay opción de restablecer. */}
           <p className="mt-6 text-[0.75rem] text-muted">
             <Link href="/" className="hover:underline">← Volver a la tienda</Link>
           </p>
