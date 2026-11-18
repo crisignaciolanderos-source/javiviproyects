@@ -5,6 +5,7 @@ import { MOCK_PRODUCTS } from "@/lib/mock-products";
 
 const STORAGE_KEY = "javivi_admin_products";
 const SALES_KEY = "javivi_admin_sales";
+const PROMOS_KEY = "javivi_admin_promotions";
 
 export interface Sale {
   id: string;
@@ -108,6 +109,40 @@ export function getSales(): Sale[] {
 export function resetAdminStore() {
   products = [...MOCK_PRODUCTS];
   sales = [];
+  promotions = [];
   saveProducts(products);
   saveSales(sales);
+  savePromotions(promotions);
+}
+
+// ---------- PROMOCIONES ----------
+
+let promotions: string[] = loadPromotions();
+
+function loadPromotions(): string[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(PROMOS_KEY);
+    if (raw) return JSON.parse(raw) as string[];
+  } catch {}
+  return [];
+}
+
+function savePromotions(list: string[]) {
+  if (typeof window === "undefined") return;
+  try { localStorage.setItem(PROMOS_KEY, JSON.stringify(list)); } catch {}
+}
+
+export function getPromotions(): string[] {
+  return promotions;
+}
+
+export function addPromotion(imageUrl: string) {
+  promotions = [...promotions, imageUrl];
+  savePromotions(promotions);
+}
+
+export function deletePromotion(index: number) {
+  promotions = promotions.filter((_, i) => i !== index);
+  savePromotions(promotions);
 }

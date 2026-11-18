@@ -66,7 +66,7 @@ export default function EditarProductoPage() {
       description: description.trim(),
       price: priceNum,
       category,
-      size: size.trim() || undefined,
+      size: category === "ropa" ? (size.trim() || undefined) : undefined,
       condition: category === "ropa" ? condition : undefined,
       images: images.length ? images : product?.images,
       stock: stockNum,
@@ -115,9 +115,11 @@ export default function EditarProductoPage() {
               </Field>
             </div>
             <div className="grid md:grid-cols-2 gap-5">
-              <Field label="Talla / Tamaño">
-                <input value={size} onChange={(e) => setSize(e.target.value)} className="input" />
-              </Field>
+              {category === "ropa" && (
+                <Field label="Talla / Tamaño">
+                  <input value={size} onChange={(e) => setSize(e.target.value)} className="input" />
+                </Field>
+              )}
               {category === "ropa" && (
                 <Field label="Estado">
                   <select value={condition} onChange={(e) => setCondition(e.target.value as Condition)} className="input">
@@ -139,7 +141,17 @@ export default function EditarProductoPage() {
             <Field label="Fotos actuales">
               <div className="flex gap-2 mt-2 flex-wrap">
                 {images.map((src, i) => (
-                  <img key={i} src={src} alt="" className="w-20 h-24 object-cover rounded border border-line" />
+                  <div key={i} className="relative group">
+                    <img src={src} alt="" className="w-20 h-24 object-cover rounded border border-line" />
+                    <button
+                      onClick={() => {
+                        setImages(images.filter((_, idx) => idx !== i));
+                      }}
+                      className="absolute top-1 right-1 bg-ink text-white w-6 h-6 rounded flex items-center justify-center hover:bg-rose transition opacity-0 group-hover:opacity-100"
+                    >
+                      ✕
+                    </button>
+                  </div>
                 ))}
               </div>
               <input type="file" accept="image/*" multiple onChange={handleFiles} className="text-[0.8125rem] mt-2" />

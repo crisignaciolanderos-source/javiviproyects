@@ -33,7 +33,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <Link href={`/producto/${product.id}`} className="text-[0.9375rem] font-semibold leading-tight hover:underline">
           {product.name}
         </Link>
-        {product.size && <span className="text-[0.75rem] text-muted">{product.size}</span>}
+        {product.category === "ropa" && product.size && <span className="text-[0.75rem] text-muted">{product.size}</span>}
         <div className="flex items-center justify-between gap-2 mt-1">
           <span className="text-[1.05rem] font-extrabold">{formatCLP(product.price)}</span>
           {!sold && (

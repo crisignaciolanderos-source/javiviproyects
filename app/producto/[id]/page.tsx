@@ -90,7 +90,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 </>
               )}
 
-              {product.size && (
+              {product.category === "ropa" && (
                 <div className="mt-5 pt-5 border-t border-line">
                   <p className="text-[0.8125rem]"><b>Talla/Tamaño:</b> {product.size}</p>
                   {product.condition && <p className="text-[0.8125rem] mt-1"><b>Estado:</b> {product.condition === "usado" ? "Usado (excelente estado)" : "Nuevo"}</p>}

@@ -4,11 +4,11 @@ import Topbar from "@/components/layout/topbar";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import ProductCard from "@/components/catalog/product-card";
+import PromoCarousel from "@/components/catalog/promo-carousel";
 import { getFeatured, getProducts } from "@/lib/products";
 
 export default async function Home() {
   const featured = await getFeatured(4);
-  const promo = (await getProducts()).find((p) => p.category === "cosmetica");
 
   return (
     <>
@@ -19,7 +19,6 @@ export default async function Home() {
         <section className="relative overflow-hidden bg-gradient-to-br from-pink-soft via-white to-pink-bg">
           <div className="container mx-auto max-w-[1440px] px-4 md:px-8 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <p className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-rose mb-4">Edición fundadora</p>
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05] lowercase">
                 belleza y estilo,<br />seleccionado para ti
               </h1>
@@ -88,19 +87,9 @@ export default async function Home() {
           </div>
         </section>
 
-        {/* Oferta */}
-        <section id="oferta" className="py-16 md:py-24">
-          <div className="container mx-auto max-w-[760px] px-4 md:px-8 text-center">
-            <p className="text-[0.6875rem] font-bold tracking-[0.16em] uppercase text-red mb-3">Edición fundadora</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight lowercase mb-4">solo 300 unidades a −30%</h2>
-            <p className="text-muted text-[0.9375rem] max-w-[52ch] mx-auto mb-7">
-              Cuando se agoten, el siguiente lote tendrá precio completo. Incluye guía digital de rutina, envío gratis y garantía de 30 días.
-            </p>
-            <Link href="/cosmetica" className="inline-block bg-ink text-white font-bold uppercase text-[0.9375rem] tracking-[0.04em] px-8 py-4 rounded-lg min-h-[56px] hover:bg-rose transition">
-              Añadir a la cesta · $27.990
-            </Link>
-            <p className="mt-4 text-[0.75rem] text-muted">🔒 Visa · Mastercard · PayPal · transferencia — sin suscripción</p>
-          </div>
+        {/* Carrusel de promociones */}
+        <section className="py-8 md:py-12">
+          <PromoCarousel />
         </section>
 
         {/* Trust */}

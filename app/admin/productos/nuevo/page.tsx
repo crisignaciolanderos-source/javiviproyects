@@ -46,7 +46,7 @@ export default function NuevoProductoPage() {
       description: description.trim(),
       price: priceNum,
       category,
-      size: size.trim() || undefined,
+      size: category === "ropa" ? (size.trim() || undefined) : undefined,
       condition: category === "ropa" ? condition : undefined,
       images: images.length ? images : ["https://picsum.photos/seed/" + Date.now() + "/600/750"],
       stock: stockNum,
@@ -83,9 +83,11 @@ export default function NuevoProductoPage() {
               </Field>
             </div>
             <div className="grid md:grid-cols-2 gap-5">
-              <Field label="Talla / Tamaño">
-                <input value={size} onChange={(e) => setSize(e.target.value)} className="input" placeholder="M, 30 ml..." />
-              </Field>
+              {category === "ropa" && (
+                <Field label="Talla / Tamaño">
+                  <input value={size} onChange={(e) => setSize(e.target.value)} className="input" placeholder="M, 30 ml..." />
+                </Field>
+              )}
               {category === "ropa" && (
                 <Field label="Estado">
                   <select value={condition} onChange={(e) => setCondition(e.target.value as Condition)} className="input">
