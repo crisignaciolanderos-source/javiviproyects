@@ -6,17 +6,22 @@ import Link from "next/link";
 import Topbar from "@/components/layout/topbar";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import { isAdminConfigured, isLoggedIn, loginDemo, getAdminEmail, hasCredentials, getDefaultEmail } from "@/lib/admin-auth";
+import { isAdminConfigured, isLoggedIn, loginDemo, getDefaultEmail } from "@/lib/admin-auth";
 import { createClient } from "@/lib/supabase/client";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState(getDefaultEmail());
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const firstAccess = !hasCredentials();
+
+  // En modo demo, fijar email a javivi@nails.com
+  useEffect(() => {
+    if (!isAdminConfigured()) {
+      setEmail(getDefaultEmail());
+    }
+  }, []);
 
   useEffect(() => {
     if (isLoggedIn()) router.replace("/admin/dashboard");
@@ -25,24 +30,17 @@ export default function AdminLoginPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
-    if (firstAccess && password !== confirm) {
-      setError("Las contraseñas no coinciden.");
-      return;
-    }
-    if (email !== getDefaultEmail() && !isAdminConfigured()) {
-      // allow any email in demo? keep default enforced
-    }
     setLoading(true);
     try {
       if (isAdminConfigured()) {
         const supabase = createClient();
         const { error: err } = await supabase.auth.signInWithPassword({ email, password });
-        if (err) throw err;
+        if (err) throw new Error("Correo o contraseña incorrectos.");
         localStorage.setItem("javivi_admin_auth", "1");
         localStorage.setItem("javivi_admin_email", email);
       } else {
         const ok = loginDemo(email, password);
-        if (!ok) throw new Error("Credenciales incorrectas.");
+        if (!ok) throw new Error("Correo o contraseña incorrectos.");
       }
       router.replace("/admin/dashboard");
     } catch (err: any) {
@@ -63,9 +61,7 @@ export default function AdminLoginPage() {
             Panel de administración de JAVIVI.
             {!isAdminConfigured() && (
               <span className="block mt-2 text-[0.75rem] text-rose">
-                {firstAccess
-                  ? "Primera vez: crea tu contraseña para javivi@nails.com."
-                  : "Ingresa con tu contraseña."}
+                Modo demo: el admin se crea la primera vez que ingresas.
               </span>
             )}
           </p>
@@ -77,7 +73,7 @@ export default function AdminLoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={!isAdminConfigured()}
-                className="mt-1 w-full border border-line-2 rounded-lg px-3 py-2.5 text-[0.9375rem] focus:outline-none focus:border-ink"
+                className="mt-1 w-full border border-line-2 rounded-lg px-3 py-2.5 text-[0.9375rem] focus:outline-none focus:border-ink disabled:bg-gray disabled:text-muted"
                 required
               />
             </div>
@@ -91,28 +87,15 @@ export default function AdminLoginPage() {
                 required
               />
             </div>
-            {firstAccess && (
-              <div>
-                <label className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-muted">Confirmar contraseña</label>
-                <input
-                  type="password"
-                  value={confirm}
-                  onChange={(e) => setConfirm(e.target.value)}
-                  className="mt-1 w-full border border-line-2 rounded-lg px-3 py-2.5 text-[0.9375rem] focus:outline-none focus:border-ink"
-                  required
-                />
-              </div>
-            )}
             {error && <p className="text-red text-[0.8125rem]">{error}</p>}
             <button
               type="submit"
               disabled={loading}
               className="bg-ink text-white font-bold uppercase text-[0.875rem] tracking-[0.04em] px-6 py-3 rounded-lg hover:bg-rose transition disabled:opacity-60"
             >
-              {loading ? "Procesando..." : firstAccess ? "Crear contraseña" : "Ingresar"}
+              {loading ? "Ingresando..." : "Ingresar"}
             </button>
           </form>
-          {/* El admin se crea una sola vez. No hay opción de restablecer. */}
           <p className="mt-6 text-[0.75rem] text-muted">
             <Link href="/" className="hover:underline">← Volver a la tienda</Link>
           </p>
