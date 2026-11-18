@@ -19,6 +19,7 @@ export default function NuevoProductoPage() {
   const [condition, setCondition] = useState<Condition>("usado");
   const [stock, setStock] = useState("1");
   const [images, setImages] = useState<string[]>([]);
+  const [featured, setFeatured] = useState(false);
   const [error, setError] = useState("");
 
   function handleFiles(e: React.ChangeEvent<HTMLInputElement>) {
@@ -48,6 +49,7 @@ export default function NuevoProductoPage() {
       category,
       size: category === "ropa" ? (size.trim() || undefined) : undefined,
       condition: category === "ropa" ? condition : undefined,
+      featured,
       images: images.length ? images : ["https://picsum.photos/seed/" + Date.now() + "/600/750"],
       stock: stockNum,
       sold: false,
@@ -110,6 +112,15 @@ export default function NuevoProductoPage() {
                 </div>
               )}
             </Field>
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                checked={featured}
+                onChange={(e) => setFeatured(e.target.checked)}
+                className="w-4 h-4 rounded border border-line-2 text-ink focus:ring-0"
+              />
+              <label className="text-[0.8125rem] font-semibold text-ink">Producto destacado (mostrar en inicio)</label>
+            </div>
             {error && <p className="text-red text-[0.8125rem]">{error}</p>}
             <div className="flex gap-3">
               <button type="submit" className="bg-ink text-white font-bold uppercase text-[0.875rem] tracking-[0.04em] px-6 py-3 rounded-lg hover:bg-rose transition">

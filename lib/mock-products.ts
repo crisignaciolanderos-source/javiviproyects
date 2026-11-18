@@ -12,6 +12,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 12,
     sold: false,
     active: true,
+  featured: false,
   },
   {
     id: "cos-002",
@@ -24,6 +25,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 8,
     sold: false,
     active: true,
+  featured: false,
   },
   {
     id: "cos-003",
@@ -36,6 +38,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 15,
     sold: false,
     active: true,
+  featured: false,
   },
   {
     id: "rop-001",
@@ -49,6 +52,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 1,
     sold: false,
     active: true,
+  featured: false,
   },
   {
     id: "rop-002",
@@ -62,6 +66,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 1,
     sold: false,
     active: true,
+  featured: false,
   },
   {
     id: "rop-003",
@@ -75,6 +80,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 1,
     sold: false,
     active: true,
+  featured: false,
   },
   {
     id: "rop-004",
@@ -88,5 +94,6 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 1,
     sold: true,
     active: false,
+    featured: false,
   },
 ];

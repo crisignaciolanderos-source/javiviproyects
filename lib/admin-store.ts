@@ -1,6 +1,6 @@
 "use client";
 
-import type { Product } from "@/types";
+import type { Product, Promotion } from "@/types";
 import { MOCK_PRODUCTS } from "@/lib/mock-products";
 
 const STORAGE_KEY = "javivi_admin_products";
@@ -117,32 +117,45 @@ export function resetAdminStore() {
 
 // ---------- PROMOCIONES ----------
 
-let promotions: string[] = loadPromotions();
+let promotions: Promotion[] = loadPromotions();
 
-function loadPromotions(): string[] {
+function loadPromotions(): Promotion[] {
   if (typeof window === "undefined") return [];
   try {
     const raw = localStorage.getItem(PROMOS_KEY);
-    if (raw) return JSON.parse(raw) as string[];
+    if (raw) return JSON.parse(raw) as Promotion[];
   } catch {}
   return [];
 }
 
-function savePromotions(list: string[]) {
+function savePromotions(list: Promotion[]) {
   if (typeof window === "undefined") return;
   try { localStorage.setItem(PROMOS_KEY, JSON.stringify(list)); } catch {}
 }
 
-export function getPromotions(): string[] {
+export function getPromotions(): Promotion[] {
   return promotions;
 }
 
-export function addPromotion(imageUrl: string) {
-  promotions = [...promotions, imageUrl];
+export function addPromotion(imageUrl: string, productId: string | null = null) {
+  promotions = [...promotions, { id: "promo-" + Date.now(), imageUrl, productId }];
   savePromotions(promotions);
 }
 
 export function deletePromotion(index: number) {
   promotions = promotions.filter((_, i) => i !== index);
   savePromotions(promotions);
+}
+
+// ---------- PRODUCTOS DESTACADOS ----------
+
+export function toggleFeatured(productId: string) {
+  const p = products.find((x) => x.id === productId);
+  if (!p) return;
+  p.featured = !p.featured;
+  saveProducts(products);
+}
+
+export function getFeaturedProducts(): Product[] {
+  return products.filter((p) => p.featured && p.active && !p.sold);
 }

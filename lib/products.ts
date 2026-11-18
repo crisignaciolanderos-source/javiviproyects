@@ -38,5 +38,6 @@ export async function getProduct(id: string): Promise<Product | null> {
 
 export async function getFeatured(limit = 4): Promise<Product[]> {
   const all = await getProducts();
-  return all.slice(0, limit);
+  const featured = all.filter((p) => p.featured);
+  return featured.length > 0 ? featured.slice(0, limit) : all.slice(0, limit);
 }

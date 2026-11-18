@@ -22,6 +22,7 @@ export default function EditarProductoPage() {
   const [condition, setCondition] = useState<Condition>("usado");
   const [stock, setStock] = useState("1");
   const [active, setActive] = useState(true);
+  const [featured, setFeatured] = useState(false);
   const [images, setImages] = useState<string[]>([]);
   const [error, setError] = useState("");
 
@@ -37,6 +38,7 @@ export default function EditarProductoPage() {
       setCondition(p.condition || "usado");
       setStock(String(p.stock));
       setActive(p.active);
+      setFeatured(p.featured);
       setImages(p.images || []);
     }
   }, [id]);
@@ -71,6 +73,7 @@ export default function EditarProductoPage() {
       images: images.length ? images : product?.images,
       stock: stockNum,
       active,
+      featured,
     });
     router.push("/admin/productos");
   }
@@ -156,6 +159,15 @@ export default function EditarProductoPage() {
               </div>
               <input type="file" accept="image/*" multiple onChange={handleFiles} className="text-[0.8125rem] mt-2" />
             </Field>
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                checked={featured}
+                onChange={(e) => setFeatured(e.target.checked)}
+                className="w-4 h-4 rounded border border-line-2 text-ink focus:ring-0"
+              />
+              <label className="text-[0.8125rem] font-semibold text-ink">Producto destacado (mostrar en inicio)</label>
+            </div>
             {error && <p className="text-red text-[0.8125rem]">{error}</p>}
             <div className="flex gap-3">
               <button type="submit" className="bg-ink text-white font-bold uppercase text-[0.875rem] tracking-[0.04em] px-6 py-3 rounded-lg hover:bg-rose transition">

@@ -13,5 +13,12 @@ export interface Product {
   stock: number;
   sold: boolean;
   active: boolean;
+  featured: boolean;
   created_at?: string;
+}
+
+export interface Promotion {
+  id: string;
+  imageUrl: string;
+  productId: string | null;
 }

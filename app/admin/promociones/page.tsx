@@ -6,15 +6,20 @@ import Topbar from "@/components/layout/topbar";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { getPromotions, addPromotion, deletePromotion } from "@/lib/admin-store";
+import { getAdminProducts } from "@/lib/admin-store";
+import type { Product } from "@/types";
 
 export default function PromocionesPage() {
-  const [promotions, setPromotions] = useState<string[]>([]);
+  const [promotions, setPromotions] = useState<any[]>([]);
   const [newImage, setNewImage] = useState("");
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [previewImages, setPreviewImages] = useState<string[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
     setPromotions([...getPromotions()]);
+    setProducts([...getAdminProducts()]);
   }, []);
 
   function handleFiles(e: React.ChangeEvent<HTMLInputElement>) {
@@ -33,8 +38,9 @@ export default function PromocionesPage() {
 
   function addNewPromo() {
     if (!newImage.trim()) { setError("Ingresa una URL de imagen o sube archivos."); return; }
-    addPromotion(newImage.trim());
+    addPromotion(newImage.trim(), selectedProductId);
     setNewImage("");
+    setSelectedProductId(null);
     setPreviewImages([]);
     setPromotions([...getPromotions()]);
     setError("");
@@ -54,10 +60,9 @@ export default function PromocionesPage() {
           <Link href="/admin/dashboard" className="text-[0.75rem] text-muted hover:text-ink">← Dashboard</Link>
           <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight lowercase mt-4 mb-6">promociones (carrusel)</h1>
           <p className="text-muted text-[0.875rem] mb-6">
-            Sube las imágenes que quieras mostrar en el carrusel de la página principal. Se adaptan automáticamente al tamaño de pantalla.
+            Sube las imágenes del carrusel. Puedes vincular cada imagen a un producto: al hacer clic, el cliente irá directo a ese producto.
           </p>
 
-          {/* Subida de imágenes */}
           <div className="bg-gray border border-line rounded-xl p-6 mb-8">
             <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
               <div className="flex-1">
@@ -69,6 +74,21 @@ export default function PromocionesPage() {
                   placeholder="https://ejemplo.com/foto.jpg"
                   className="input w-full"
                 />
+              </div>
+              <div className="flex-1">
+                <label className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-muted block mb-1">Vincular a producto (opcional)</label>
+                <select
+                  value={selectedProductId || ""}
+                  onChange={(e) => setSelectedProductId(e.target.value || null)}
+                  className="input w-full"
+                >
+                  <option value="">Ninguna (solo imagen)</option>
+                  {products.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.name} ({p.category === "ropa" ? "Ropa" : "Cosmetic"}) - ${p.price.toLocaleString("es-CL")}
+                    </option>
+                  ))}
+                </select>
               </div>
               <button
                 onClick={addNewPromo}
@@ -91,15 +111,17 @@ export default function PromocionesPage() {
             {error && <p className="text-red text-[0.8125rem] mt-2">{error}</p>}
           </div>
 
-          {/* Galería actual */}
           <h2 className="text-lg font-bold mb-4">Imágenes actuales del carrusel</h2>
           {promotions.length === 0 ? (
             <p className="text-muted text-[0.875rem]">Aún no hay imágenes de promoción.</p>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {promotions.map((src, i) => (
+              {promotions.map((promo, i) => (
                 <div key={i} className="relative group">
-                  <img src={src} alt="" className="w-full h-48 object-cover rounded border border-line" />
+                  <img src={promo.imageUrl} alt="" className="w-full h-48 object-cover rounded border border-line" />
+                  {promo.productId && (
+                    <span className="absolute top-1 left-1 bg-ink text-white text-[0.6rem] font-bold px-2 py-0.5 rounded">Producto</span>
+                  )}
                   <button
                     onClick={() => removePromo(i)}
                     className="absolute top-2 right-2 bg-ink text-white w-8 h-8 rounded flex items-center justify-center hover:bg-rose transition opacity-0 group-hover:opacity-100"
