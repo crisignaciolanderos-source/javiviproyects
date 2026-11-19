@@ -33,3 +33,120 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 button { font-family: inherit; }
+
+/* ============ FEATURED CARD (Uiverse) ============ */
+.featured-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  position: relative;
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ececec;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.featured-card {
+  width: 110%;
+  height: 110%;
+  translate: -5% -5%;
+  filter: url("#noise");
+  --color-1: #f3ecde;
+  --color-2: #e581a2;
+  --color-3: #fce3ec;
+  background: radial-gradient(
+      circle at 50% 100%,
+      var(--color-1) 20%,
+      var(--color-2) 40% 50%,
+      var(--color-3) 55%
+    )
+    no-repeat center / auto;
+  font-size: 100px;
+  position: relative;
+}
+
+.featured-image {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+}
+
+.featured-title {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #e581a2 0%, #ffb4c8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.04em;
+  filter: drop-shadow(0px 4px 12px rgba(229, 129, 162, 0.25));
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 2;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.featured-desc {
+  position: absolute;
+  bottom: 27%;
+  left: 50%;
+  translate: -50% 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  font-weight: 300;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 2;
+}
+
+.featured-buy {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  translate: -50% 0;
+  background: #e581a2;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 8px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  z-index: 3;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.featured-wrapper:hover .featured-title {
+  letter-spacing: -0.01em;
+  filter: drop-shadow(0px 8px 16px rgba(229, 129, 162, 0.4));
+  transform: translateY(-2px);
+}
+
+.featured-wrapper:hover .featured-desc {
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.featured-wrapper:hover .featured-buy {
+  opacity: 1;
+}
+
+.featured-wrapper:hover .featured-card {
+  filter: url("#noise") brightness(1.05);
+}

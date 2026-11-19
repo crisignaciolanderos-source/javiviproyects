@@ -25,7 +25,7 @@ export default function PromoCarousel() {
 
   return (
     <section className="relative overflow-hidden bg-white">
-      <div className="relative h-[500px] md:h-[600px]">
+      <div className="relative h-[350px] md:h-[450px]">
         <div className="relative h-full flex transition-transform duration-700 ease-in-out -translate-x-[{current * 100}%]">
           {promotions.map((promo, i) => {
             const link = promo.productId ? `/producto/${promo.productId}` : undefined;

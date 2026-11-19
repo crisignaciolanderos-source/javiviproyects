@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import Topbar from "@/components/layout/topbar";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { getAdminProduct, updateProduct } from "@/lib/admin-store";
@@ -81,7 +80,6 @@ export default function EditarProductoPage() {
   if (!product) {
     return (
       <>
-        <Topbar />
         <Header />
         <main className="flex-1 flex items-center justify-center py-20">
           <p className="text-muted">Producto no encontrado. <Link href="/admin/productos" className="underline">Volver</Link></p>
@@ -93,7 +91,6 @@ export default function EditarProductoPage() {
 
   return (
     <>
-      <Topbar />
       <Header />
       <main className="flex-1">
         <div className="container mx-auto max-w-[760px] px-4 md:px-8 py-10">

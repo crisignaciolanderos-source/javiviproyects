@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Topbar from "@/components/layout/topbar";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { getAdminProducts, deleteProduct, updateProduct } from "@/lib/admin-store";
@@ -30,7 +29,6 @@ export default function ProductosPage() {
 
   return (
     <>
-      <Topbar />
       <Header />
       <main className="flex-1">
         <div className="container mx-auto max-w-[1440px] px-4 md:px-8 py-10">

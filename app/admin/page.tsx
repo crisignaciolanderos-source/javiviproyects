@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Topbar from "@/components/layout/topbar";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { isAdminConfigured, isLoggedIn, loginDemo, getDefaultEmail } from "@/lib/admin-auth";
@@ -52,7 +51,6 @@ export default function AdminLoginPage() {
 
   return (
     <>
-      <Topbar />
       <Header />
       <main className="flex-1 flex items-center justify-center py-16 px-4">
         <div className="w-full max-w-md bg-white border border-line rounded-2xl p-8 shadow-sm">

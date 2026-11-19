@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import Topbar from "@/components/layout/topbar";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { getProduct } from "@/lib/products";
@@ -18,7 +17,6 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
   return (
     <>
-      <Topbar />
       <Header />
       <main className="flex-1">
         <div className="container mx-auto max-w-[1440px] px-4 md:px-8 py-8 md:py-12">

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Topbar from "@/components/layout/topbar";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { createProduct } from "@/lib/admin-store";
@@ -60,7 +59,6 @@ export default function NuevoProductoPage() {
 
   return (
     <>
-      <Topbar />
       <Header />
       <main className="flex-1">
         <div className="container mx-auto max-w-[760px] px-4 md:px-8 py-10">
