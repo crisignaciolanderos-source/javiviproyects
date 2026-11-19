@@ -120,12 +120,45 @@ export default function PromocionesPage() {
                   {promo.productId && (
                     <span className="absolute top-1 left-1 bg-ink text-white text-[0.6rem] font-bold px-2 py-0.5 rounded">Producto</span>
                   )}
-                  <button
-                    onClick={() => removePromo(i)}
-                    className="absolute top-2 right-2 bg-ink text-white w-8 h-8 rounded flex items-center justify-center hover:bg-rose transition opacity-0 group-hover:opacity-100"
-                  >
-                    ✕
-                  </button>
+                  <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const input = document.createElement("input");
+                        input.type = "file";
+                        input.accept = "image/*";
+                        input.onchange = (e) => {
+                          const file = (e.target as HTMLInputElement).files?.[0];
+                          if (file) {
+                            const reader = new FileReader();
+                            reader.onload = () => {
+                              if (typeof reader.result === "string") {
+                                const newPromos = [...promotions];
+                                newPromos[i] = { ...newPromos[i], imageUrl: reader.result as string };
+                                // Actualizar en el store
+                                deletePromotion(i);
+                                addPromotion(reader.result as string, newPromos[i].productId);
+                                setPromotions([...getPromotions()]);
+                              }
+                            };
+                            reader.readAsDataURL(file);
+                          }
+                        };
+                        input.click();
+                      }}
+                      className="bg-blue-500 text-white w-8 h-8 rounded flex items-center justify-center hover:bg-blue-600 transition text-[0.6rem]"
+                      title="Reemplazar foto"
+                    >
+                      ↻
+                    </button>
+                    <button
+                      onClick={() => removePromo(i)}
+                      className="bg-ink text-white w-8 h-8 rounded flex items-center justify-center hover:bg-rose transition text-[0.6rem]"
+                      title="Eliminar foto"
+                    >
+                      ✕
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>

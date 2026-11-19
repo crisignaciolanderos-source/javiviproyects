@@ -105,7 +105,48 @@ export default function NuevoProductoPage() {
               {images.length > 0 && (
                 <div className="flex gap-2 mt-3 flex-wrap">
                   {images.map((src, i) => (
-                    <img key={i} src={src} alt="" className="w-20 h-24 object-cover rounded border border-line" />
+                    <div key={i} className="relative group">
+                      <img src={src} alt="" className="w-20 h-24 object-cover rounded border border-line" />
+                      <div className="absolute top-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const input = document.createElement("input");
+                            input.type = "file";
+                            input.accept = "image/*";
+                            input.onchange = (e) => {
+                              const file = (e.target as HTMLInputElement).files?.[0];
+                              if (file) {
+                                const reader = new FileReader();
+                                reader.onload = () => {
+                                  if (typeof reader.result === "string") {
+                                    const newImages = [...images];
+                                    newImages[i] = reader.result as string;
+                                    setImages(newImages);
+                                  }
+                                };
+                                reader.readAsDataURL(file);
+                              }
+                            };
+                            input.click();
+                          }}
+                          className="bg-blue-500 text-white w-6 h-6 rounded flex items-center justify-center hover:bg-blue-600 transition text-[0.6rem]"
+                          title="Reemplazar foto"
+                        >
+                          ↻
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setImages(images.filter((_, idx) => idx !== i));
+                          }}
+                          className="bg-ink text-white w-6 h-6 rounded flex items-center justify-center hover:bg-rose transition text-[0.6rem]"
+                          title="Eliminar foto"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    </div>
                   ))}
                 </div>
               )}

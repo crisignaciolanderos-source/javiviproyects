@@ -143,18 +143,50 @@ export default function EditarProductoPage() {
                 {images.map((src, i) => (
                   <div key={i} className="relative group">
                     <img src={src} alt="" className="w-20 h-24 object-cover rounded border border-line" />
-                    <button
-                      onClick={() => {
-                        setImages(images.filter((_, idx) => idx !== i));
-                      }}
-                      className="absolute top-1 right-1 bg-ink text-white w-6 h-6 rounded flex items-center justify-center hover:bg-rose transition opacity-0 group-hover:opacity-100"
-                    >
-                      ✕
-                    </button>
+                    <div className="absolute top-1 right-1 flex gap-1 opacity-0 group-hover:opacity-100 transition">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const input = document.createElement("input");
+                          input.type = "file";
+                          input.accept = "image/*";
+                          input.onchange = (e) => {
+                            const file = (e.target as HTMLInputElement).files?.[0];
+                            if (file) {
+                              const reader = new FileReader();
+                              reader.onload = () => {
+                                if (typeof reader.result === "string") {
+                                  const newImages = [...images];
+                                  newImages[i] = reader.result as string;
+                                  setImages(newImages);
+                                }
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          };
+                          input.click();
+                        }}
+                        className="bg-blue-500 text-white w-6 h-6 rounded flex items-center justify-center hover:bg-blue-600 transition text-[0.6rem]"
+                        title="Reemplazar foto"
+                      >
+                        ↻
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setImages(images.filter((_, idx) => idx !== i));
+                        }}
+                        className="bg-ink text-white w-6 h-6 rounded flex items-center justify-center hover:bg-rose transition text-[0.6rem]"
+                        title="Eliminar foto"
+                      >
+                        ✕
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
               <input type="file" accept="image/*" multiple onChange={handleFiles} className="text-[0.8125rem] mt-2" />
+              <p className="text-[0.7rem] text-muted mt-1">Pasa el mouse sobre una foto para reemplazarla (↻) o eliminarla (✕)</p>
             </Field>
             <div className="flex items-center gap-3">
               <input
