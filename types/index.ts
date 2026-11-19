@@ -15,6 +15,7 @@ export interface Product {
   sold: boolean;
   active: boolean;
   featured: boolean;
+  colors?: string[]; // colores disponibles
   whatsapp_message?: string; // mensaje personalizado para WhatsApp
   usage_instructions?: string; // modo de empleo
   created_at?: string;

@@ -4,9 +4,9 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { getProduct } from "@/lib/products";
 import { formatCLP } from "@/lib/utils";
-import { whatsappLink } from "@/lib/whatsapp";
 import { notFound } from "next/navigation";
 import ReviewsSection from "@/components/catalog/reviews-section";
+import ColorBuySection from "@/components/catalog/color-buy-section";
 
 export const dynamic = "force-dynamic";
 
@@ -77,27 +77,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               </div>
               <p className="text-[0.75rem] text-muted mb-5">IVA incluido · Precio de lanzamiento</p>
 
-              {sold ? (
-                <div className="bg-gray border border-line rounded-lg p-4 text-center">
-                  <p className="font-bold text-ink">Este producto ya fue vendido</p>
-                  <p className="text-[0.8125rem] text-muted mt-1">Escríbenos por WhatsApp para opciones similares.</p>
-                </div>
-              ) : (
-                <>
-                  <div className="flex items-center gap-2 text-[0.8125rem] text-green font-semibold mb-4">
-                    <span className="w-2 h-2 rounded-full bg-green" />
-                    En stock · envío en 24-48 h
-                  </div>
-                  <a
-                    href={whatsappLink(product)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary block w-full text-center font-bold uppercase text-[0.9375rem] tracking-[0.04em] px-6 py-4 rounded-lg min-h-[56px] bg-ink text-white hover:bg-rose transition"
-                  >
-                    Comprar por WhatsApp
-                  </a>
-                </>
-              )}
+              <ColorBuySection product={product} />
 
               {product.category === "ropa" && (
                 <div className="mt-5 pt-5 border-t border-line">
@@ -145,7 +125,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <span className="font-extrabold text-[1rem]">{formatCLP(product.price)}</span>
           </div>
           <a
-            href={whatsappLink(product)}
+            href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "56XXXXXXXXX"}?text=${encodeURIComponent("Hola JAVIVI! Me interesa este producto: " + product.name)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 bg-ink text-white font-bold uppercase text-[0.875rem] py-3 rounded-lg text-center min-h-[46px] flex items-center justify-center"

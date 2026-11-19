@@ -4,6 +4,21 @@ import type { Product } from "@/types";
 import { formatCLP } from "@/lib/utils";
 import { whatsappLink } from "@/lib/whatsapp";
 
+const COLOR_HEX: Record<string, string> = {
+  "Negro": "#000000",
+  "Blanco": "#FFFFFF",
+  "Rojo": "#EF4444",
+  "Azul": "#3B82F6",
+  "Verde": "#22C55E",
+  "Amarillo": "#EAB308",
+  "Naranja": "#F97316",
+  "Rosa": "#EC4899",
+  "Morado": "#8B5CF6",
+  "Gris": "#6B7280",
+  "Beige": "#D4B896",
+  "Marrón": "#78350F",
+};
+
 export default function ProductCard({ product }: { product: Product }) {
   const sold = product.sold || product.stock <= 0;
   return (
@@ -34,6 +49,18 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.name}
         </Link>
         {product.category === "ropa" && product.size && <span className="text-[0.75rem] text-muted">{product.size}</span>}
+        {product.colors && product.colors.length > 0 && (
+          <div className="flex gap-1.5 mt-1.5">
+            {product.colors.map((c) => (
+              <span
+                key={c}
+                className="w-4 h-4 rounded-full border border-line-2"
+                style={{ backgroundColor: COLOR_HEX[c] || "#ccc" }}
+                title={c}
+              />
+            ))}
+          </div>
+        )}
         <div className="flex items-center justify-between gap-2 mt-1">
           <div className="flex items-baseline gap-2 flex-wrap">
             {product.original_price && product.original_price > product.price && (

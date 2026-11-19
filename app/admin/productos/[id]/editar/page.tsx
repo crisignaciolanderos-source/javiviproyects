@@ -25,6 +25,7 @@ export default function EditarProductoPage() {
   const [originalPrice, setOriginalPrice] = useState("");
   const [whatsappMessage, setWhatsappMessage] = useState("");
   const [usageInstructions, setUsageInstructions] = useState("");
+  const [colors, setColors] = useState<string[]>([]);
   const [images, setImages] = useState<string[]>([]);
   const [error, setError] = useState("");
 
@@ -45,6 +46,7 @@ export default function EditarProductoPage() {
         setOriginalPrice(p.original_price ? String(p.original_price) : "");
         setWhatsappMessage(p.whatsapp_message || "");
         setUsageInstructions(p.usage_instructions || "");
+        setColors(p.colors || []);
         setImages(p.images || []);
       }
     }
@@ -83,6 +85,7 @@ export default function EditarProductoPage() {
       active,
       featured,
       original_price: originalPrice ? parseInt(originalPrice, 10) : undefined,
+      colors: colors.length ? colors : undefined,
       whatsapp_message: whatsappMessage.trim() || undefined,
       usage_instructions: usageInstructions.trim() || undefined,
     });
@@ -150,6 +153,42 @@ export default function EditarProductoPage() {
                 </select>
               </Field>
             </div>
+            <Field label="Colores disponibles (opcional)">
+              <div className="flex flex-wrap gap-2 mt-1">
+                {[
+                  { name: "Negro", hex: "#000000" },
+                  { name: "Blanco", hex: "#FFFFFF" },
+                  { name: "Rojo", hex: "#EF4444" },
+                  { name: "Azul", hex: "#3B82F6" },
+                  { name: "Verde", hex: "#22C55E" },
+                  { name: "Amarillo", hex: "#EAB308" },
+                  { name: "Naranja", hex: "#F97316" },
+                  { name: "Rosa", hex: "#EC4899" },
+                  { name: "Morado", hex: "#8B5CF6" },
+                  { name: "Gris", hex: "#6B7280" },
+                  { name: "Beige", hex: "#D4B896" },
+                  { name: "Marrón", hex: "#78350F" },
+                ].map((c) => (
+                  <button
+                    key={c.name}
+                    type="button"
+                    onClick={() => {
+                      setColors((prev) =>
+                        prev.includes(c.name)
+                          ? prev.filter((x) => x !== c.name)
+                          : [...prev, c.name]
+                      );
+                    }}
+                    className={`w-8 h-8 rounded-full border-2 transition ${colors.includes(c.name) ? "border-ink scale-110" : "border-line-2"}`}
+                    style={{ backgroundColor: c.hex }}
+                    title={c.name}
+                  />
+                ))}
+              </div>
+              {colors.length > 0 && (
+                <p className="text-[0.75rem] text-muted mt-2">Seleccionados: {colors.join(", ")}</p>
+              )}
+            </Field>
             <Field label="Precio original (CLP, opcional)">
               <input type="number" value={originalPrice} onChange={(e) => setOriginalPrice(e.target.value)} className="input" placeholder="39990" />
             </Field>

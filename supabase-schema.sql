@@ -16,6 +16,7 @@ create table if not exists public.products (
   active boolean not null default true,
   featured boolean not null default false,
   original_price integer,
+  colors text[],
   whatsapp_message text,
   usage_instructions text,
   created_at timestamptz not null default now()
