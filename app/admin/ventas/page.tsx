@@ -17,19 +17,21 @@ export default function VentasPage() {
   const [notes, setNotes] = useState("");
   const [msg, setMsg] = useState("");
 
-  function refresh() {
-    setProducts([...getAdminProducts()]);
-    setSales([...getSales()]);
+  async function refresh() {
+    const p = await getAdminProducts();
+    const s = await getSales();
+    setProducts([...p]);
+    setSales([...s]);
   }
   useEffect(() => { refresh(); }, []);
 
   const available = products.filter((p) => !p.sold && p.active);
 
-  function handleSale(e: React.FormEvent) {
+  async function handleSale(e: React.FormEvent) {
     e.preventDefault();
     setMsg("");
     if (!selectedId) { setMsg("Selecciona un producto."); return; }
-    const sale = registerSale({ product_id: selectedId, buyer_name: buyerName, buyer_phone: buyerPhone, notes });
+    const sale = await registerSale({ product_id: selectedId, buyer_name: buyerName, buyer_phone: buyerPhone, notes });
     if (sale) {
       setMsg("✓ Venta registrada. Stock actualizado.");
       setSelectedId("");

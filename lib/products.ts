@@ -37,6 +37,13 @@ export async function getProduct(id: string): Promise<Product | null> {
 }
 
 export async function getFeatured(limit = 4): Promise<Product[]> {
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = await createServerClient();
+      const { data, error } = await supabase.from("products").select("*").eq("featured", true).eq("active", true).eq("sold", false).limit(limit);
+      if (!error && data && data.length > 0) return data as Product[];
+    } catch {}
+  }
   const all = await getProducts();
   const featured = all.filter((p) => p.featured);
   return featured.length > 0 ? featured.slice(0, limit) : all.slice(0, limit);

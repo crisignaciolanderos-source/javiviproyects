@@ -14,6 +14,7 @@ create table if not exists public.products (
   stock integer not null default 0,
   sold boolean not null default false,
   active boolean not null default true,
+  featured boolean not null default false,
   created_at timestamptz not null default now()
 );
 
@@ -30,12 +31,10 @@ create table if not exists public.sales (
 -- ========== TABLA promotions ==========
 create table if not exists public.promotions (
   id uuid primary key default gen_random_uuid(),
-  title text not null,
-  description text,
-  discount_percent integer default 0,
-  active boolean not null default false,
-  starts_at timestamptz,
-  ends_at timestamptz,
+  title text,
+  image_url text,
+  product_id uuid references public.products(id) on delete set null,
+  active boolean not null default true,
   created_at timestamptz not null default now()
 );
 

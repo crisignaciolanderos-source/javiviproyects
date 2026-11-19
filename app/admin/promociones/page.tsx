@@ -17,8 +17,13 @@ export default function PromocionesPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    setPromotions([...getPromotions()]);
-    setProducts([...getAdminProducts()]);
+    async function load() {
+      const p = await getPromotions();
+      const pr = await getAdminProducts();
+      setPromotions([...p]);
+      setProducts([...pr]);
+    }
+    load();
   }, []);
 
   function handleFiles(e: React.ChangeEvent<HTMLInputElement>) {
@@ -35,19 +40,21 @@ export default function PromocionesPage() {
     setPreviewImages(previews);
   }
 
-  function addNewPromo() {
+  async function addNewPromo() {
     if (!newImage.trim()) { setError("Ingresa una URL de imagen o sube archivos."); return; }
-    addPromotion(newImage.trim(), selectedProductId);
+    await addPromotion(newImage.trim(), selectedProductId);
     setNewImage("");
     setSelectedProductId(null);
     setPreviewImages([]);
-    setPromotions([...getPromotions()]);
+    const p = await getPromotions();
+    setPromotions([...p]);
     setError("");
   }
 
-  function removePromo(index: number) {
-    deletePromotion(index);
-    setPromotions([...getPromotions()]);
+  async function removePromo(index: number) {
+    await deletePromotion(index);
+    const p = await getPromotions();
+    setPromotions([...p]);
   }
 
   return (
@@ -131,14 +138,14 @@ export default function PromocionesPage() {
                           const file = (e.target as HTMLInputElement).files?.[0];
                           if (file) {
                             const reader = new FileReader();
-                            reader.onload = () => {
+                            reader.onload = async () => {
                               if (typeof reader.result === "string") {
                                 const newPromos = [...promotions];
                                 newPromos[i] = { ...newPromos[i], imageUrl: reader.result as string };
-                                // Actualizar en el store
-                                deletePromotion(i);
-                                addPromotion(reader.result as string, newPromos[i].productId);
-                                setPromotions([...getPromotions()]);
+                                await deletePromotion(i);
+                                await addPromotion(reader.result as string, newPromos[i].productId);
+                                const p = await getPromotions();
+                                setPromotions([...p]);
                               }
                             };
                             reader.readAsDataURL(file);

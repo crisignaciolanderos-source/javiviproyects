@@ -26,20 +26,23 @@ export default function EditarProductoPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const p = getAdminProduct(id);
-    if (p) {
-      setProduct(p);
-      setName(p.name);
-      setDescription(p.description);
-      setPrice(String(p.price));
-      setCategory(p.category);
-      setSize(p.size || "");
-      setCondition(p.condition || "usado");
-      setStock(String(p.stock));
-      setActive(p.active);
-      setFeatured(p.featured);
-      setImages(p.images || []);
+    async function load() {
+      const p = await getAdminProduct(id);
+      if (p) {
+        setProduct(p);
+        setName(p.name);
+        setDescription(p.description);
+        setPrice(String(p.price));
+        setCategory(p.category);
+        setSize(p.size || "");
+        setCondition(p.condition || "usado");
+        setStock(String(p.stock));
+        setActive(p.active);
+        setFeatured(p.featured);
+        setImages(p.images || []);
+      }
     }
+    load();
   }, [id]);
 
   function handleFiles(e: React.ChangeEvent<HTMLInputElement>) {
@@ -54,7 +57,7 @@ export default function EditarProductoPage() {
     });
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
     if (!name.trim()) { setError("El nombre es obligatorio."); return; }
@@ -62,7 +65,7 @@ export default function EditarProductoPage() {
     if (isNaN(priceNum) || priceNum <= 0) { setError("Precio inválido."); return; }
     const stockNum = parseInt(stock, 10);
     if (isNaN(stockNum) || stockNum < 0) { setError("Stock inválido."); return; }
-    updateProduct(id, {
+    await updateProduct(id, {
       name: name.trim(),
       description: description.trim(),
       price: priceNum,

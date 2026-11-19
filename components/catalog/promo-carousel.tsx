@@ -11,12 +11,12 @@ export default function PromoCarousel() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const stored = localStorage.getItem("javivi_admin_promotions");
-    if (stored) {
-      try {
-        setPromotions(JSON.parse(stored));
-      } catch {}
+    async function load() {
+      const { getPromotions } = await import("@/lib/admin-store");
+      const promos = await getPromotions();
+      setPromotions(promos);
     }
+    load();
     const t = setInterval(() => setCurrent((c) => (c + 1) % (promotions.length || 1)), 5000);
     return () => clearInterval(t);
   }, [promotions]);

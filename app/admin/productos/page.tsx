@@ -11,19 +11,20 @@ import { formatCLP } from "@/lib/utils";
 export default function ProductosPage() {
   const [products, setProducts] = useState<Product[]>([]);
 
-  function refresh() {
-    setProducts([...getAdminProducts()]);
+  async function refresh() {
+    const p = await getAdminProducts();
+    setProducts([...p]);
   }
   useEffect(() => { refresh(); }, []);
 
-  function handleDelete(id: string) {
+  async function handleDelete(id: string) {
     if (!confirm("¿Eliminar este producto?")) return;
-    deleteProduct(id);
+    await deleteProduct(id);
     refresh();
   }
 
-  function toggleActive(p: Product) {
-    updateProduct(p.id, { active: !p.active });
+  async function toggleActive(p: Product) {
+    await updateProduct(p.id, { active: !p.active });
     refresh();
   }
 

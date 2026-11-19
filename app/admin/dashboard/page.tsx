@@ -15,8 +15,13 @@ export default function DashboardPage() {
   const [sales, setSales] = useState<any[]>([]);
 
   useEffect(() => {
-    setProducts(getAdminProducts());
-    setSales(getSales());
+    async function load() {
+      const p = await getAdminProducts();
+      const s = await getSales();
+      setProducts(p);
+      setSales(s);
+    }
+    load();
   }, []);
 
   const total = products.length;

@@ -33,7 +33,7 @@ export default function NuevoProductoPage() {
     });
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
     if (!name.trim()) { setError("El nombre es obligatorio."); return; }
@@ -41,7 +41,7 @@ export default function NuevoProductoPage() {
     if (isNaN(priceNum) || priceNum <= 0) { setError("Precio inválido."); return; }
     const stockNum = parseInt(stock, 10);
     if (isNaN(stockNum) || stockNum < 0) { setError("Stock inválido."); return; }
-    createProduct({
+    await createProduct({
       name: name.trim(),
       description: description.trim(),
       price: priceNum,
