@@ -1,6 +1,6 @@
 "use client";
 
-import type { Product, Promotion } from "@/types";
+import type { Product, Promotion, Review } from "@/types";
 import { MOCK_PRODUCTS } from "@/lib/mock-products";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { createClient } from "@/lib/supabase/client";
@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 const STORAGE_KEY = "javivi_admin_products";
 const SALES_KEY = "javivi_admin_sales";
 const PROMOS_KEY = "javivi_admin_promotions";
+const REVIEWS_KEY = "javivi_admin_reviews";
 
 export interface Sale {
   id: string;
@@ -267,4 +268,47 @@ export async function getFeaturedProducts(): Promise<Product[]> {
     } catch {}
   }
   return demoProducts.filter((p) => p.featured && p.active && !p.sold);
+}
+
+// ---------- RESEÑAS ----------
+
+let demoReviews: Review[] = loadReviews();
+
+function loadReviews(): Review[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(REVIEWS_KEY);
+    if (raw) return JSON.parse(raw) as Review[];
+  } catch {}
+  return [];
+}
+
+function saveReviews(list: Review[]) {
+  if (typeof window === "undefined") return;
+  try { localStorage.setItem(REVIEWS_KEY, JSON.stringify(list)); } catch {}
+}
+
+export async function getReviews(productId: string): Promise<Review[]> {
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createClient();
+      const { data, error } = await supabase.from("reviews").select("*").eq("product_id", productId).order("created_at", { ascending: false });
+      if (!error && data) return data as Review[];
+    } catch {}
+  }
+  return demoReviews.filter((r) => r.product_id === productId);
+}
+
+export async function addReview(review: Omit<Review, "id" | "created_at">): Promise<Review> {
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createClient();
+      const { data, error } = await supabase.from("reviews").insert(review).select().single();
+      if (!error && data) return data as Review;
+    } catch {}
+  }
+  const nr: Review = { ...review, id: "r-" + Date.now(), created_at: new Date().toISOString() };
+  demoReviews = [nr, ...demoReviews];
+  saveReviews(demoReviews);
+  return nr;
 }

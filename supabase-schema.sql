@@ -15,6 +15,9 @@ create table if not exists public.products (
   sold boolean not null default false,
   active boolean not null default true,
   featured boolean not null default false,
+  original_price integer,
+  whatsapp_message text,
+  usage_instructions text,
   created_at timestamptz not null default now()
 );
 
@@ -38,6 +41,16 @@ create table if not exists public.promotions (
   created_at timestamptz not null default now()
 );
 
+-- ========== TABLA reviews ==========
+create table if not exists public.reviews (
+  id uuid primary key default gen_random_uuid(),
+  product_id uuid references public.products(id) on delete cascade,
+  author_name text,
+  text text not null,
+  image_url text,
+  created_at timestamptz not null default now()
+);
+
 -- ========== RLS ==========
 alter table public.products enable row level security;
 alter table public.sales enable row level security;
@@ -50,6 +63,14 @@ create policy "products public read" on public.products
 -- Lectura pública de promociones activas
 create policy "promotions public read" on public.promotions
   for select using (active = true);
+
+-- Lectura pública de reseñas
+create policy "reviews public read" on public.reviews
+  for select using (true);
+
+-- Cualquiera puede escribir reseñas (sin cuenta)
+create policy "reviews public insert" on public.reviews
+  for insert with check (true);
 
 -- Solo usuarios autenticados (admin) pueden escribir
 create policy "products admin write" on public.products

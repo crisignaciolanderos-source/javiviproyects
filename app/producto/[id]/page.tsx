@@ -6,6 +6,7 @@ import { getProduct } from "@/lib/products";
 import { formatCLP } from "@/lib/utils";
 import { whatsappLink } from "@/lib/whatsapp";
 import { notFound } from "next/navigation";
+import ReviewsSection from "@/components/catalog/reviews-section";
 
 export const dynamic = "force-dynamic";
 
@@ -55,14 +56,24 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               <div className="flex items-center gap-2 mb-3.5 text-[0.8125rem]">
                 <span className="text-amber-500">★★★</span>
                 <span className="text-line-2">★★</span>
-                <Link href="#resenas" className="text-ink underline underline-offset-3 font-medium">(0) · Sé el primero en valorar</Link>
+                <Link href="#resenas" className="text-ink underline underline-offset-3 font-medium">Ver reseñas</Link>
               </div>
 
               <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2.5">{product.name}</h1>
               <p className="text-ink-2 max-w-[44ch] mb-6">{product.description}</p>
 
               <div className="flex items-baseline gap-3 flex-wrap mb-1.5">
-                <span className="text-3xl font-extrabold tracking-tight">{formatCLP(product.price)}</span>
+                {product.original_price && product.original_price > product.price && (
+                  <span className="text-xl text-muted line-through">{formatCLP(product.original_price)}</span>
+                )}
+                <span className={`text-3xl font-extrabold tracking-tight ${product.original_price && product.original_price > product.price ? "text-red" : ""}`}>
+                  {formatCLP(product.price)}
+                </span>
+                {product.original_price && product.original_price > product.price && (
+                  <span className="bg-red text-white text-[0.6875rem] font-bold px-2 py-0.5 rounded">
+                    -{Math.round((1 - product.price / product.original_price) * 100)}%
+                  </span>
+                )}
               </div>
               <p className="text-[0.75rem] text-muted mb-5">IVA incluido · Precio de lanzamiento</p>
 
@@ -96,9 +107,8 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               )}
 
               <div className="flex flex-wrap gap-3.5 mt-5 text-[0.75rem] text-muted">
-                <span>✓ Garantía 30 días</span>
                 <span>✓ Pago seguro</span>
-                <span>✓ Envío gratis +$35.000</span>
+                <span>✓ Pago contra entrega presencial en San Fernando</span>
               </div>
 
               <div className="mt-8 border-t border-line">
@@ -115,7 +125,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     Modo de empleo <span>+</span>
                   </summary>
                   <div className="pb-6 text-[0.9375rem] text-ink-2 max-w-[75ch]">
-                    <p>Aplicar según indicaciones del envase. Consulta por WhatsApp si tienes dudas.</p>
+                    <p>{product.usage_instructions || "Aplicar según indicaciones del envase. Consulta por WhatsApp si tienes dudas."}</p>
                   </div>
                 </details>
               </div>
@@ -123,6 +133,9 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           </div>
         </div>
       </main>
+      <div className="container mx-auto max-w-[1440px] px-4 md:px-8 pb-12">
+        <ReviewsSection productId={product.id} />
+      </div>
       <Footer />
 
       {/* Sticky mobile */}

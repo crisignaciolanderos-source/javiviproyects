@@ -22,6 +22,9 @@ export default function EditarProductoPage() {
   const [stock, setStock] = useState("1");
   const [active, setActive] = useState(true);
   const [featured, setFeatured] = useState(false);
+  const [originalPrice, setOriginalPrice] = useState("");
+  const [whatsappMessage, setWhatsappMessage] = useState("");
+  const [usageInstructions, setUsageInstructions] = useState("");
   const [images, setImages] = useState<string[]>([]);
   const [error, setError] = useState("");
 
@@ -39,6 +42,9 @@ export default function EditarProductoPage() {
         setStock(String(p.stock));
         setActive(p.active);
         setFeatured(p.featured);
+        setOriginalPrice(p.original_price ? String(p.original_price) : "");
+        setWhatsappMessage(p.whatsapp_message || "");
+        setUsageInstructions(p.usage_instructions || "");
         setImages(p.images || []);
       }
     }
@@ -76,6 +82,9 @@ export default function EditarProductoPage() {
       stock: stockNum,
       active,
       featured,
+      original_price: originalPrice ? parseInt(originalPrice, 10) : undefined,
+      whatsapp_message: whatsappMessage.trim() || undefined,
+      usage_instructions: usageInstructions.trim() || undefined,
     });
     router.push("/admin/productos");
   }
@@ -141,6 +150,15 @@ export default function EditarProductoPage() {
                 </select>
               </Field>
             </div>
+            <Field label="Precio original (CLP, opcional)">
+              <input type="number" value={originalPrice} onChange={(e) => setOriginalPrice(e.target.value)} className="input" placeholder="39990" />
+            </Field>
+            <Field label="Mensaje de WhatsApp (opcional)">
+              <textarea value={whatsappMessage} onChange={(e) => setWhatsappMessage(e.target.value)} className="input min-h-[70px]" placeholder="Hola JAVIVI! Me interesa este producto..." />
+            </Field>
+            <Field label="Modo de empleo (opcional)">
+              <textarea value={usageInstructions} onChange={(e) => setUsageInstructions(e.target.value)} className="input min-h-[70px]" placeholder="¿Cómo se usa? Aplicar 3 gotas..." />
+            </Field>
             <Field label="Fotos actuales">
               <div className="flex gap-2 mt-2 flex-wrap">
                 {images.map((src, i) => (

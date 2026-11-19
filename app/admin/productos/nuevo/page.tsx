@@ -19,6 +19,9 @@ export default function NuevoProductoPage() {
   const [stock, setStock] = useState("1");
   const [images, setImages] = useState<string[]>([]);
   const [featured, setFeatured] = useState(false);
+  const [originalPrice, setOriginalPrice] = useState("");
+  const [whatsappMessage, setWhatsappMessage] = useState("");
+  const [usageInstructions, setUsageInstructions] = useState("");
   const [error, setError] = useState("");
 
   function handleFiles(e: React.ChangeEvent<HTMLInputElement>) {
@@ -45,10 +48,13 @@ export default function NuevoProductoPage() {
       name: name.trim(),
       description: description.trim(),
       price: priceNum,
+      original_price: originalPrice ? parseInt(originalPrice, 10) : undefined,
       category,
       size: category === "ropa" ? (size.trim() || undefined) : undefined,
       condition: category === "ropa" ? condition : undefined,
       featured,
+      whatsapp_message: whatsappMessage.trim() || undefined,
+      usage_instructions: usageInstructions.trim() || undefined,
       images: images.length ? images : ["https://picsum.photos/seed/" + Date.now() + "/600/750"],
       stock: stockNum,
       sold: false,
@@ -100,6 +106,15 @@ export default function NuevoProductoPage() {
                 <input type="number" value={stock} onChange={(e) => setStock(e.target.value)} className="input" min="0" />
               </Field>
             </div>
+            <Field label="Precio original (CLP, opcional)">
+              <input type="number" value={originalPrice} onChange={(e) => setOriginalPrice(e.target.value)} className="input" placeholder="39990" />
+            </Field>
+            <Field label="Mensaje de WhatsApp (opcional)">
+              <textarea value={whatsappMessage} onChange={(e) => setWhatsappMessage(e.target.value)} className="input min-h-[70px]" placeholder="Hola JAVIVI! Me interesa este producto..." />
+            </Field>
+            <Field label="Modo de empleo (opcional)">
+              <textarea value={usageInstructions} onChange={(e) => setUsageInstructions(e.target.value)} className="input min-h-[70px]" placeholder="¿Cómo se usa? Aplicar 3 gotas..." />
+            </Field>
             <Field label="Fotos">
               <input type="file" accept="image/*" multiple onChange={handleFiles} className="text-[0.8125rem]" />
               {images.length > 0 && (

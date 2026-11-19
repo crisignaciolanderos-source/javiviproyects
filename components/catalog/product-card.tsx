@@ -35,7 +35,14 @@ export default function ProductCard({ product }: { product: Product }) {
         </Link>
         {product.category === "ropa" && product.size && <span className="text-[0.75rem] text-muted">{product.size}</span>}
         <div className="flex items-center justify-between gap-2 mt-1">
-          <span className="text-[1.05rem] font-extrabold">{formatCLP(product.price)}</span>
+          <div className="flex items-baseline gap-2 flex-wrap">
+            {product.original_price && product.original_price > product.price && (
+              <span className="text-[0.8125rem] text-muted line-through">{formatCLP(product.original_price)}</span>
+            )}
+            <span className={`text-[1.05rem] font-extrabold ${product.original_price && product.original_price > product.price ? "text-red" : ""}`}>
+              {formatCLP(product.price)}
+            </span>
+          </div>
           {!sold && (
             <a
               href={whatsappLink(product)}
