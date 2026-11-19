@@ -5,6 +5,7 @@ import Footer from "@/components/layout/footer";
 import ProductCard from "@/components/catalog/product-card";
 import FeaturedCard from "@/components/catalog/featured-card";
 import PromoCarousel from "@/components/catalog/promo-carousel";
+import CircularCarousel from "@/components/catalog/circular-carousel";
 import { getFeatured, getProducts } from "@/lib/products";
 import { whatsappLink } from "@/lib/whatsapp";
 
@@ -84,10 +85,31 @@ export default async function Home() {
               <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Destacados</h2>
               <Link href="/cosmetica" className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] hover:underline">Ver todo →</Link>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {featured.map((p) => (
-                <FeaturedCard key={p.id} product={p} />
-              ))}
+            <div style={{ width: "100%", height: "560px", position: "relative" }}>
+              <CircularCarousel
+                items={featured}
+                cardWidth={220}
+                aspectRatio={1}
+                speed={14}
+                gap={25}
+                tilt={-5}
+                curve={1}
+                perspective={2500}
+                autoplay="drift"
+                interval={3}
+                direction="left"
+                momentum={0.6}
+                snap
+                pauseOnHover
+                focusOnClick
+                draggable
+                parallax={0.3}
+                stretch={0.5}
+                fadeColor="#000000"
+                depthFade={0.55}
+                innerShade={0.6}
+                cornerRadius={12}
+              />
             </div>
           </div>
         </section>
