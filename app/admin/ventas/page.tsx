@@ -48,7 +48,7 @@ export default function VentasPage() {
       <main className="flex-1">
         <div className="container mx-auto max-w-[1440px] px-4 md:px-8 py-10">
           <Link href="/admin/dashboard" className="text-[0.75rem] text-muted hover:text-ink">← Dashboard</Link>
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight lowercase mt-4 mb-6">registrar venta</h1>
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight mt-4 mb-6">Registrar venta</h1>
 
           <div className="grid md:grid-cols-2 gap-8">
             <form onSubmit={handleSale} className="bg-gray border border-line rounded-xl p-6 flex flex-col gap-4">

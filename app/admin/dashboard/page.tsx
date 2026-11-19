@@ -31,7 +31,7 @@ export default function DashboardPage() {
         <div className="container mx-auto max-w-[1440px] px-4 md:px-8 py-10">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
             <div>
-              <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight lowercase">panel admin</h1>
+              <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">Panel admin</h1>
               <p className="text-muted text-[0.875rem]">Sesión: {getAdminEmail()}</p>
             </div>
             <div className="flex gap-3">

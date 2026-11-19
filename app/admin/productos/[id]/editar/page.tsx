@@ -95,7 +95,7 @@ export default function EditarProductoPage() {
       <main className="flex-1">
         <div className="container mx-auto max-w-[760px] px-4 md:px-8 py-10">
           <Link href="/admin/productos" className="text-[0.75rem] text-muted hover:text-ink">← Volver</Link>
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight lowercase mt-4 mb-6">editar producto</h1>
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight mt-4 mb-6">Editar producto</h1>
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             <Field label="Nombre">
               <input value={name} onChange={(e) => setName(e.target.value)} className="input" required />

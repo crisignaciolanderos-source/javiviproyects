@@ -54,7 +54,7 @@ export default function AdminLoginPage() {
       <Header />
       <main className="flex-1 flex items-center justify-center py-16 px-4">
         <div className="w-full max-w-md bg-white border border-line rounded-2xl p-8 shadow-sm">
-          <h1 className="text-2xl font-extrabold tracking-tight lowercase mb-2">acceso trabajadores</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight mb-2">Acceso trabajadores</h1>
           <p className="text-muted text-[0.875rem] mb-6">
             Panel de administración de JAVIVI.
             {!isAdminConfigured() && (

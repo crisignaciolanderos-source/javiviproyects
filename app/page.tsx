@@ -55,7 +55,7 @@ export default async function Home() {
         {/* Categorías */}
         <section className="py-10 md:py-14">
           <div className="container mx-auto max-w-[1440px] px-4 md:px-8">
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-6 lowercase">explora por categoría</h2>
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-6">Explora por categoría</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <Link href="/cosmetica" className="group relative overflow-hidden rounded-2xl border border-line aspect-[16/9] md:aspect-[4/3]">
                 <Image src="https://picsum.photos/seed/catcos/800/600" alt="Cosmética" fill className="object-cover group-hover:scale-105 transition duration-500" />
@@ -81,7 +81,7 @@ export default async function Home() {
         <section className="py-10 md:py-14 bg-gray">
           <div className="container mx-auto max-w-[1440px] px-4 md:px-8">
             <div className="flex items-end justify-between mb-5">
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight lowercase">destacados</h2>
+              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Destacados</h2>
               <Link href="/cosmetica" className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] hover:underline">Ver todo →</Link>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">

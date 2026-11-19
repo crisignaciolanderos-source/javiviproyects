@@ -22,7 +22,7 @@ export default async function RopaPage() {
           </nav>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
             <div>
-              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight lowercase mb-2">ropa usada</h1>
+              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">Ropa Usada</h1>
               <p className="text-muted max-w-[60ch]">Prendas únicas en excelente estado. Cada una es irrepetible.</p>
             </div>
             <div className="flex flex-wrap gap-2">

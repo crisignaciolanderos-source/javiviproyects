@@ -58,7 +58,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 <Link href="#resenas" className="text-ink underline underline-offset-3 font-medium">(0) · Sé el primero en valorar</Link>
               </div>
 
-              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight lowercase mb-2.5">{product.name}</h1>
+              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-2.5">{product.name}</h1>
               <p className="text-ink-2 max-w-[44ch] mb-6">{product.description}</p>
 
               <div className="flex items-baseline gap-3 flex-wrap mb-1.5">

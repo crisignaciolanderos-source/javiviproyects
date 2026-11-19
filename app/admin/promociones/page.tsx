@@ -56,7 +56,7 @@ export default function PromocionesPage() {
       <main className="flex-1">
         <div className="container mx-auto max-w-[1440px] px-4 md:px-8 py-10">
           <Link href="/admin/dashboard" className="text-[0.75rem] text-muted hover:text-ink">← Dashboard</Link>
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight lowercase mt-4 mb-6">promociones (carrusel)</h1>
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight mt-4 mb-6">Promociones (carrusel)</h1>
           <p className="text-muted text-[0.875rem] mb-6">
             Sube las imágenes del carrusel. Puedes vincular cada imagen a un producto: al hacer clic, el cliente irá directo a ese producto.
           </p>
