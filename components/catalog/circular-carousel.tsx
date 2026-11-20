@@ -103,6 +103,9 @@ export default function CircularCarousel({
       frame.style.borderRadius = `${cornerRadius}px`;
       frame.style.overflow = "hidden";
       frame.style.position = "relative";
+      frame.style.left = "50%";
+      frame.style.top = "50%";
+      frame.style.transform = `translate(-50%, -50%)`;
 
       const img = document.createElement("img");
       img.className = "circular-carousel__photo";
@@ -111,18 +114,15 @@ export default function CircularCarousel({
       img.style.width = "100%";
       img.style.height = "100%";
       img.style.objectFit = "cover";
+      img.style.objectPosition = "center";
       img.draggable = false;
       frame.appendChild(img);
 
+      // Sombra suave solo en los bordes, no sobre la imagen
       const shade = document.createElement("div");
       shade.className = "circular-carousel__shade";
-      shade.style.opacity = String(depthFade);
+      shade.style.opacity = "0.15";
       frame.appendChild(shade);
-
-      const inner = document.createElement("div");
-      inner.className = "circular-carousel__inner";
-      inner.style.opacity = String(innerShade);
-      frame.appendChild(inner);
 
       tile.appendChild(frame);
 
@@ -144,7 +144,17 @@ export default function CircularCarousel({
 
     camera.style.perspective = `${perspective}px`;
     camera.style.perspectiveOrigin = "50% 50%";
+    camera.style.width = "0";
+    camera.style.height = "0";
+    camera.style.position = "absolute";
+    camera.style.left = "50%";
+    camera.style.top = "50%";
+    camera.style.transform = "translate(-50%, -50%)";
     ring.style.transform = `rotateY(0deg)`;
+    ring.style.position = "absolute";
+    ring.style.left = "0";
+    ring.style.top = "0";
+    ring.style.transformOrigin = "center center";
 
     setReady(true);
 

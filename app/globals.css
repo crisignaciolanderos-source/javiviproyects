@@ -256,11 +256,6 @@ button { font-family: inherit; }
   inset: 0;
 }
 
-.circular-carousel[data-shape='wheel'] .circular-carousel__view {
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000000 18%, #000000 82%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000000 18%, #000000 82%, transparent);
-}
-
 .circular-carousel__stage {
   position: absolute;
   inset: 0;
@@ -284,7 +279,10 @@ button { font-family: inherit; }
 }
 
 .circular-carousel__camera {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .circular-carousel__ring,
@@ -292,6 +290,7 @@ button { font-family: inherit; }
   position: absolute;
   left: 0;
   top: 0;
+  transform-origin: center center;
 }
 
 .circular-carousel__tile {
