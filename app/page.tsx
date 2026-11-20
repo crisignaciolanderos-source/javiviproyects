@@ -67,8 +67,11 @@ export default async function Home() {
             <div style={{ width: "100%", height: "400px", position: "relative" }} className="md:h-[560px]">
               <CircularCarousel
                 items={featured}
+                preset="cylinder"
+                intro="rise"
                 cardWidth={220}
                 aspectRatio={1}
+                captions={false}
                 speed={14}
                 gap={25}
                 tilt={-5}
