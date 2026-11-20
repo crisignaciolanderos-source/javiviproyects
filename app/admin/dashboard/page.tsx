@@ -76,6 +76,9 @@ export default function DashboardPage() {
             <Link href="/admin/promociones" className="bg-white border border-line-2 text-ink font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:shadow transition">
               Gestionar promociones →
             </Link>
+            <Link href="/admin/categorias" className="bg-white border border-line-2 text-ink font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:shadow transition">
+              Imágenes de categorías →
+            </Link>
           </div>
 
           <h2 className="text-lg font-bold mb-4">Últimas ventas</h2>

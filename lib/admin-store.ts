@@ -9,6 +9,7 @@ const STORAGE_KEY = "javivi_admin_products";
 const SALES_KEY = "javivi_admin_sales";
 const PROMOS_KEY = "javivi_admin_promotions";
 const REVIEWS_KEY = "javivi_admin_reviews";
+const CAT_IMAGES_KEY = "javivi_admin_category_images";
 
 export interface Sale {
   id: string;
@@ -311,4 +312,70 @@ export async function addReview(review: Omit<Review, "id" | "created_at">): Prom
   demoReviews = [nr, ...demoReviews];
   saveReviews(demoReviews);
   return nr;
+}
+
+// ---------- IMÁGENES DE CATEGORÍAS ----------
+
+export interface CategoryImage {
+  category: "cosmetica" | "ropa";
+  imageUrl: string;
+}
+
+let demoCategoryImages: CategoryImage[] = loadCategoryImages();
+
+function loadCategoryImages(): CategoryImage[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem(CAT_IMAGES_KEY);
+    if (raw) return JSON.parse(raw) as CategoryImage[];
+  } catch {}
+  return [];
+}
+
+function saveCategoryImages(list: CategoryImage[]) {
+  if (typeof window === "undefined") return;
+  try { localStorage.setItem(CAT_IMAGES_KEY, JSON.stringify(list)); } catch {}
+}
+
+export async function getCategoryImages(): Promise<CategoryImage[]> {
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createClient();
+      const { data, error } = await supabase.from("category_images").select("*");
+      if (!error && data) {
+        return data.map((d: any) => ({
+          category: d.category,
+          imageUrl: d.image_url,
+        })) as CategoryImage[];
+      }
+    } catch {}
+  }
+  return [...demoCategoryImages];
+}
+
+export async function setCategoryImage(category: "cosmetica" | "ropa", imageUrl: string): Promise<void> {
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createClient();
+      const { data: existing } = await supabase.from("category_images").select("id").eq("category", category).single();
+      if (existing) {
+        await supabase.from("category_images").update({ image_url: imageUrl }).eq("category", category);
+      } else {
+        await supabase.from("category_images").insert({ category, image_url: imageUrl });
+      }
+    } catch {}
+  }
+  const idx = demoCategoryImages.findIndex((c) => c.category === category);
+  if (idx >= 0) {
+    demoCategoryImages[idx].imageUrl = imageUrl;
+  } else {
+    demoCategoryImages.push({ category, imageUrl });
+  }
+  saveCategoryImages(demoCategoryImages);
+}
+
+export async function getCategoryImage(category: "cosmetica" | "ropa"): Promise<string | null> {
+  const images = await getCategoryImages();
+  const found = images.find((c) => c.category === category);
+  return found?.imageUrl || null;
 }

@@ -6,6 +6,7 @@ import ProductCard from "@/components/catalog/product-card";
 import FeaturedCard from "@/components/catalog/featured-card";
 import PromoCarousel from "@/components/catalog/promo-carousel";
 import CircularCarousel from "@/components/catalog/circular-carousel";
+import CategorySection from "@/components/catalog/category-section";
 import { getFeatured, getProducts } from "@/lib/products";
 import { whatsappLink } from "@/lib/whatsapp";
 
@@ -54,29 +55,7 @@ export default async function Home() {
         </section>
 
         {/* Categorías */}
-        <section className="py-10 md:py-14">
-          <div className="container mx-auto max-w-[1440px] px-4 md:px-8">
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-6">Explora por categoría</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <Link href="/cosmetica" className="group relative overflow-hidden rounded-2xl border border-line aspect-[16/9] md:aspect-[4/3]">
-                <Image src="https://picsum.photos/seed/catcos/800/600" alt="Cosmética" fill className="object-cover group-hover:scale-105 transition duration-500" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
-                <div className="absolute bottom-6 left-6 text-white">
-                  <p className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] mb-1">Cuidado de la piel</p>
-                  <h3 className="text-2xl font-extrabold uppercase">Cosmetic</h3>
-                </div>
-              </Link>
-              <Link href="/ropa" className="group relative overflow-hidden rounded-2xl border border-line aspect-[16/9] md:aspect-[4/3]">
-                <Image src="https://picsum.photos/seed/catrop/800/600" alt="Ropa" fill className="object-cover group-hover:scale-105 transition duration-500" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
-                <div className="absolute bottom-6 left-6 text-white">
-                  <p className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] mb-1">Prendas únicas</p>
-                  <h3 className="text-2xl font-extrabold uppercase">Ropa Usada</h3>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </section>
+        <CategorySection />
 
         {/* Destacados */}
         <section className="py-10 md:py-14 bg-gray">

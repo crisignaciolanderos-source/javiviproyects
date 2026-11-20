@@ -52,6 +52,19 @@ create table if not exists public.reviews (
   created_at timestamptz not null default now()
 );
 
+-- ========== TABLA category_images ==========
+create table if not exists public.category_images (
+  id uuid primary key default gen_random_uuid(),
+  category text not null unique check (category in ('cosmetica','ropa')),
+  image_url text not null,
+  created_at timestamptz not null default now()
+);
+
+-- RLS para category_images
+alter table public.category_images enable row level security;
+create policy "category_images public read" on public.category_images for select using (true);
+create policy "category_images admin write" on public.category_images for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+
 -- ========== RLS ==========
 alter table public.products enable row level security;
 alter table public.sales enable row level security;
