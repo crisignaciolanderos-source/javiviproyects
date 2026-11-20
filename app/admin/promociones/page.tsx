@@ -15,6 +15,7 @@ export default function PromocionesPage() {
   const [previewImages, setPreviewImages] = useState<string[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState("");
+  const [msg, setMsg] = useState("");
 
   useEffect(() => {
     async function load() {
@@ -29,15 +30,18 @@ export default function PromocionesPage() {
   function handleFiles(e: React.ChangeEvent<HTMLInputElement>) {
     const files = e.target.files;
     if (!files) return;
-    const previews: string[] = [];
     Array.from(files).forEach((file) => {
       const reader = new FileReader();
-      reader.onload = () => {
-        if (typeof reader.result === "string") previews.push(reader.result as string);
+      reader.onload = async () => {
+        if (typeof reader.result === "string") {
+          await addPromotion(reader.result as string, selectedProductId);
+          const p = await getPromotions();
+          setPromotions([...p]);
+          setMsg("✓ Imagen agregada al carrusel.");
+        }
       };
       reader.readAsDataURL(file);
     });
-    setPreviewImages(previews);
   }
 
   async function addNewPromo() {

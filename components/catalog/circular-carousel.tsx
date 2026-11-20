@@ -931,16 +931,13 @@ const CircularCarousel = ({
           </div>
         </div>
       </div>
-      {captions && current && (
+      {current && (
         <div className="circular-carousel__caption" aria-hidden="true">
           <span key={active} className="circular-carousel__title">
             {current.name}
-            {current.category && <span className="circular-carousel__subtitle">{current.category === "ropa" ? "Ropa Usada" : "Cosmetic"}</span>}
           </span>
-          <span className="circular-carousel__count">
-            <Digits value={active + 1} />
-            <span className="circular-carousel__slash">/</span>
-            <span>{String(count).padStart(2, "0")}</span>
+          <span className="circular-carousel__subtitle" style={{ fontWeight: 700, opacity: 1, color: "#fff", fontSize: "16px" }}>
+            ${current.price.toLocaleString("es-CL")}
           </span>
         </div>
       )}
