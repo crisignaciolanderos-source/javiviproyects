@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import WhatsAppFloat from "@/components/layout/whatsapp-float";
 import AuroraScroll from "@/components/layout/aurora-scroll";
+import GrainientBg from "@/components/layout/grainient-bg";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,11 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <div className="aurora-bg" aria-hidden="true">
-          <div className="aurora-blob" id="aurora-blob-1" />
-          <div className="aurora-blob-2" id="aurora-blob-2" />
-        </div>
-        <AuroraScroll />
+        <GrainientBg />
         {children}
         <WhatsAppFloat />
       </body>
