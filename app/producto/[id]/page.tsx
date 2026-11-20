@@ -7,6 +7,7 @@ import { formatCLP } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import ReviewsSection from "@/components/catalog/reviews-section";
 import ColorBuySection from "@/components/catalog/color-buy-section";
+import ProductGallery from "@/components/catalog/product-gallery";
 
 export const dynamic = "force-dynamic";
 
@@ -34,21 +35,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           <div className="grid md:grid-cols-[1.35fr_1fr] gap-8 md:gap-14 items-start">
             {/* Galería */}
             <div className="md:sticky md:top-24">
-              <div className="relative aspect-[4/5] rounded-xl overflow-hidden border border-line bg-gradient-to-br from-pink-soft to-pink-bg">
-                <Image
-                  src={product.images?.[0] || "https://picsum.photos/600/750"}
-                  alt={product.name}
-                  fill
-                  priority
-                  sizes="(max-width:768px) 100vw, 55vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="flex gap-2.5 justify-center mt-3.5 flex-wrap">
-                {product.images.map((_, k) => (
-                  <span key={k} className={`w-1.5 h-1.5 rounded-full ${k === 0 ? "bg-ink scale-125" : "bg-line-2"}`} />
-                ))}
-              </div>
+              <ProductGallery images={product.images || []} alt={product.name} />
             </div>
 
             {/* Caja de compra */}

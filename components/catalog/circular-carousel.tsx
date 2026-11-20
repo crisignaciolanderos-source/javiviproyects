@@ -876,8 +876,7 @@ const CircularCarousel = ({
               style={{ ...photoStyle, animationDelay: `${Math.round(leaving.delays[index])}ms` }}
             />
           )}
-          {back && <div className="circular-carousel__inner" />}
-          <div className="circular-carousel__shade" />
+          {back && <div className="circular-carousel__inner" style={{ display: "none" }} />}
         </div>
       </div>
     );

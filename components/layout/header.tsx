@@ -11,7 +11,6 @@ export default function Header() {
           <ul className="flex gap-[26px] list-none">
             <li><Link href="/cosmetica" className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] relative py-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-0 after:bg-ink after:transition-all">Cosmética</Link></li>
             <li><Link href="/ropa" className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] relative py-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-0 after:bg-ink after:transition-all">Ropa</Link></li>
-            <li><Link href="/admin/promociones" className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-red relative py-1">Promociones</Link></li>
           </ul>
         </nav>
       </div>
