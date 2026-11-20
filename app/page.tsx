@@ -24,7 +24,7 @@ export default async function Home() {
         </section>
 
         {/* Hero */}
-        <section className="relative overflow-hidden bg-gradient-to-br from-pink-soft via-white to-pink-bg">
+        <section className="relative overflow-hidden" style={{ background: "#2d1b2e" }}>
           <div className="container mx-auto max-w-[1440px] px-4 md:px-8 py-10 md:py-14 grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">

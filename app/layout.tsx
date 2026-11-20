@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import WhatsAppFloat from "@/components/layout/whatsapp-float";
-import AuroraScroll from "@/components/layout/aurora-scroll";
-import GrainientBg from "@/components/layout/grainient-bg";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,8 +24,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
-        <GrainientBg />
+      <body className="min-h-full flex flex-col" style={{ background: "#0f0f1a" }}>
         {children}
         <WhatsAppFloat />
       </body>
