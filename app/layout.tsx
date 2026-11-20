@@ -19,6 +19,11 @@ export const metadata: Metadata = {
     locale: "es_CL",
     type: "website",
   },
+  other: {
+    "cache-control": "no-store, no-cache, must-revalidate",
+    pragma: "no-cache",
+    expires: "0",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
