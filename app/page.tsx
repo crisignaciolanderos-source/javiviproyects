@@ -10,16 +10,22 @@ import CategorySection from "@/components/catalog/category-section";
 import HeroImage from "@/components/catalog/hero-image";
 import { getFeatured, getProducts } from "@/lib/products";
 import { whatsappLink } from "@/lib/whatsapp";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export default async function Home() {
   const featured = await getFeatured(4);
+  const allProducts = await getProducts();
 
   return (
     <>
       <Header />
+      {/* Debug indicator (temporal) */}
+      <div style={{ background: "#1a1a2e", color: "#9ca3af", fontSize: "0.7rem", padding: "4px 16px", textAlign: "center" }}>
+        Supabase: {isSupabaseConfigured() ? "✅ Conectado" : "❌ No configurado"} | Productos: {allProducts.length} | Destacados: {featured.length}
+      </div>
       <main className="flex-1">
         {/* Carrusel de promociones */}
         <section className="py-0">
