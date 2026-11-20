@@ -64,7 +64,7 @@ export default async function Home() {
               <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Destacados</h2>
               <Link href="/cosmetica" className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] hover:underline">Ver todo →</Link>
             </div>
-            <div style={{ width: "100%", height: "560px", position: "relative" }}>
+            <div style={{ width: "100%", height: "400px", position: "relative" }} className="md:h-[560px]">
               <CircularCarousel
                 items={featured}
                 cardWidth={220}

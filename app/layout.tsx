@@ -25,6 +25,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
+        <div className="aurora-bg" aria-hidden="true">
+          <div className="aurora-blob" />
+        </div>
         {children}
         <WhatsAppFloat />
       </body>
