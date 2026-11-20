@@ -107,7 +107,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
       {/* Sticky mobile */}
       {!sold && (
-        <div className="md:hidden fixed left-0 right-0 bottom-0 bg-white border-t border-line px-4 py-2.5 flex items-center gap-3.5 z-[60] shadow-[0_-4px_20px_rgba(0,0,0,.08)]">
+        <div className="md:hidden fixed left-0 right-0 bottom-0 bg-[var(--white)] border-t border-line px-4 py-2.5 flex items-center gap-3.5 z-[60] shadow-[0_-4px_20px_rgba(0,0,0,.08)]">
           <div className="flex flex-col leading-tight">
             <span className="font-extrabold text-[1rem]">{formatCLP(product.price)}</span>
           </div>

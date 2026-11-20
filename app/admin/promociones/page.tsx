@@ -68,7 +68,7 @@ export default function PromocionesPage() {
             Sube las imágenes del carrusel. Puedes vincular cada imagen a un producto: al hacer clic, el cliente irá directo a ese producto.
           </p>
 
-          <div className="bg-gray border border-line rounded-xl p-6 mb-8">
+          <div className="bg-[var(--gray)] border border-line rounded-xl p-6 mb-8">
             <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
               <div className="flex-1">
                 <label className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-muted block mb-1">URL de imagen</label>

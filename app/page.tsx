@@ -37,7 +37,7 @@ export default async function Home() {
                 <Link href="/cosmetica" className="bg-ink text-white font-bold uppercase text-[0.875rem] tracking-[-0.03em] px-6 py-3.5 rounded-lg hover:bg-rose transition">
                   Ver cosméticos
                 </Link>
-                <Link href="/ropa" className="bg-white text-ink font-bold uppercase text-[0.875rem] tracking-[-0.03em] px-6 py-3.5 rounded-lg border border-line-2 shadow-sm hover:shadow-md transition">
+                <Link href="/ropa" className="bg-[var(--white)] text-ink font-bold uppercase text-[0.875rem] tracking-[-0.03em] px-6 py-3.5 rounded-lg border border-line-2 shadow-sm hover:shadow-md transition">
                   Ver ropa
                 </Link>
               </div>
@@ -52,7 +52,7 @@ export default async function Home() {
         <CategorySection />
 
         {/* Destacados */}
-        <section className="py-10 md:py-14 bg-gray">
+        <section className="py-10 md:py-14 bg-[var(--gray)]">
           <div className="container mx-auto max-w-[1440px] px-4 md:px-8">
             <div className="flex items-end justify-between mb-5">
               <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Destacados</h2>

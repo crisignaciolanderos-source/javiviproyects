@@ -66,7 +66,7 @@ export default function ProductosPage() {
                     <td className="py-3 pr-3">
                       <button
                         onClick={() => toggleActive(p)}
-                        className={`text-[0.6875rem] font-bold uppercase px-2 py-1 rounded ${p.active ? "bg-green/10 text-green" : "bg-gray text-muted"}`}
+                        className={`text-[0.6875rem] font-bold uppercase px-2 py-1 rounded ${p.active ? "bg-green/10 text-green" : "bg-[var(--gray)] text-muted"}`}
                       >
                         {p.active ? "Activo" : "Inactivo"}
                       </button>

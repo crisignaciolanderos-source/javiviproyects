@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-line">
+    <header className="sticky top-0 z-50 bg-[var(--white)] border-b border-line">
       <div className="container mx-auto max-w-[1440px] px-4 md:px-8 flex items-center h-16 gap-8">
         <Link href="/" className="text-xl font-extrabold tracking-[0.18em] uppercase whitespace-nowrap">
           JAVIVI<span className="font-normal"></span>

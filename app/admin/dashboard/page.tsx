@@ -45,7 +45,7 @@ export default function DashboardPage() {
               </Link>
               <button
                 onClick={() => { logout(); router.replace("/admin"); }}
-                className="border border-line-2 text-ink font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-gray transition"
+                className="border border-line-2 text-ink font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-[var(--gray)] transition"
               >
                 Salir
               </button>
@@ -59,7 +59,7 @@ export default function DashboardPage() {
               ["Vendidos", sold],
               ["Stock bajo (≤2)", lowStock],
             ].map(([label, val]) => (
-              <div key={label} className="bg-gray border border-line rounded-xl p-5">
+              <div key={label} className="bg-[var(--gray)] border border-line rounded-xl p-5">
                 <p className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-muted mb-1">{label}</p>
                 <p className="text-3xl font-extrabold">{val}</p>
               </div>
@@ -67,16 +67,16 @@ export default function DashboardPage() {
           </div>
 
           <div className="flex flex-wrap gap-3 mb-8">
-            <Link href="/admin/productos" className="bg-white border border-line-2 text-ink font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:shadow transition">
+            <Link href="/admin/productos" className="bg-[var(--white)] border border-line-2 text-ink font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:shadow transition">
               Gestionar productos →
             </Link>
-            <Link href="/admin/ventas" className="bg-white border border-line-2 text-ink font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:shadow transition">
+            <Link href="/admin/ventas" className="bg-[var(--white)] border border-line-2 text-ink font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:shadow transition">
               Registrar venta →
             </Link>
-            <Link href="/admin/promociones" className="bg-white border border-line-2 text-ink font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:shadow transition">
+            <Link href="/admin/promociones" className="bg-[var(--white)] border border-line-2 text-ink font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:shadow transition">
               Gestionar promociones →
             </Link>
-            <Link href="/admin/categorias" className="bg-white border border-line-2 text-ink font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:shadow transition">
+            <Link href="/admin/categorias" className="bg-[var(--white)] border border-line-2 text-ink font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:shadow transition">
               Imágenes de categorías →
             </Link>
           </div>

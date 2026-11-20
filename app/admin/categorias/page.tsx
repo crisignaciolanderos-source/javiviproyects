@@ -60,7 +60,7 @@ export default function CategoriasPage() {
           </p>
 
           {/* Imagen del Hero */}
-          <div className="bg-gray border border-line rounded-xl p-6 mb-8">
+          <div className="bg-[var(--gray)] border border-line rounded-xl p-6 mb-8">
             <h2 className="text-lg font-bold mb-4">Imagen principal (Hero)</h2>
             {previewHero && (
               <img src={previewHero} alt="Hero" className="w-full h-48 object-cover rounded border border-line mb-4" />
@@ -103,7 +103,7 @@ export default function CategoriasPage() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Cosmética */}
-            <div className="bg-gray border border-line rounded-xl p-6">
+            <div className="bg-[var(--gray)] border border-line rounded-xl p-6">
               <h2 className="text-lg font-bold mb-4">Cosmética</h2>
               {previewCos && (
                 <img src={previewCos} alt="Cosmética" className="w-full h-48 object-cover rounded border border-line mb-4" />
@@ -133,7 +133,7 @@ export default function CategoriasPage() {
             </div>
 
             {/* Ropa */}
-            <div className="bg-gray border border-line rounded-xl p-6">
+            <div className="bg-[var(--gray)] border border-line rounded-xl p-6">
               <h2 className="text-lg font-bold mb-4">Ropa Usada</h2>
               {previewRopa && (
                 <img src={previewRopa} alt="Ropa" className="w-full h-48 object-cover rounded border border-line mb-4" />

@@ -53,7 +53,7 @@ export default function VentasPage() {
           <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight mt-4 mb-6">Registrar venta</h1>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <form onSubmit={handleSale} className="bg-gray border border-line rounded-xl p-6 flex flex-col gap-4">
+            <form onSubmit={handleSale} className="bg-[var(--gray)] border border-line rounded-xl p-6 flex flex-col gap-4">
               <div>
                 <label className="text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-muted">Producto disponible</label>
                 <select value={selectedId} onChange={(e) => setSelectedId(e.target.value)} className="input mt-1">

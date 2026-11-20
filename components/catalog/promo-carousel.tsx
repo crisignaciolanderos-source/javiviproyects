@@ -24,7 +24,7 @@ export default function PromoCarousel() {
   if (promotions.length === 0) return null;
 
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative overflow-hidden bg-[var(--white)]">
       <div className="relative h-[350px] md:h-[450px]">
         <div className="relative h-full flex transition-transform duration-700 ease-in-out -translate-x-[{current * 100}%]">
           {promotions.map((promo, i) => {

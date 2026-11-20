@@ -24,7 +24,7 @@
 
 html { scroll-behavior: smooth; }
 body {
-  background: transparent;
+  background: #0f0f1a;
   color: var(--ink);
   font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -295,12 +295,13 @@ button { font-family: inherit; }
 
 .circular-carousel__tile {
   position: absolute;
-  outline: 1px solid transparent;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   border-radius: var(--cc-radius);
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: none;
+  outline: none;
+  box-shadow: none;
 }
 
 .circular-carousel__frame {
