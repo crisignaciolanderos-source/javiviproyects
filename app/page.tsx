@@ -7,6 +7,7 @@ import FeaturedCard from "@/components/catalog/featured-card";
 import PromoCarousel from "@/components/catalog/promo-carousel";
 import CircularCarousel from "@/components/catalog/circular-carousel";
 import CategorySection from "@/components/catalog/category-section";
+import HeroImage from "@/components/catalog/hero-image";
 import { getFeatured, getProducts } from "@/lib/products";
 import { whatsappLink } from "@/lib/whatsapp";
 
@@ -42,14 +43,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-line shadow-lg">
-              <Image
-                src="https://picsum.photos/seed/herojavivi/700/875"
-                alt="JAVIVI"
-                fill
-                priority
-                sizes="(max-width:768px) 100vw, 50vw"
-                className="object-cover"
-              />
+              <HeroImage />
             </div>
           </div>
         </section>

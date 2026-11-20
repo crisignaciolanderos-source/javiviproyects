@@ -60,6 +60,18 @@ create table if not exists public.category_images (
   created_at timestamptz not null default now()
 );
 
+-- ========== TABLA site_images ==========
+create table if not exists public.site_images (
+  id uuid primary key default gen_random_uuid(),
+  key text not null unique,
+  image_url text not null,
+  created_at timestamptz not null default now()
+);
+
+alter table public.site_images enable row level security;
+create policy "site_images public read" on public.site_images for select using (true);
+create policy "site_images admin write" on public.site_images for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+
 -- RLS para category_images
 alter table public.category_images enable row level security;
 create policy "category_images public read" on public.category_images for select using (true);

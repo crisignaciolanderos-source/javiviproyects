@@ -10,6 +10,7 @@ const SALES_KEY = "javivi_admin_sales";
 const PROMOS_KEY = "javivi_admin_promotions";
 const REVIEWS_KEY = "javivi_admin_reviews";
 const CAT_IMAGES_KEY = "javivi_admin_category_images";
+const HERO_IMAGE_KEY = "javivi_admin_hero_image";
 
 export interface Sale {
   id: string;
@@ -378,4 +379,35 @@ export async function getCategoryImage(category: "cosmetica" | "ropa"): Promise<
   const images = await getCategoryImages();
   const found = images.find((c) => c.category === category);
   return found?.imageUrl || null;
+}
+
+// ---------- IMAGEN DEL HERO ----------
+
+export async function getHeroImage(): Promise<string | null> {
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createClient();
+      const { data, error } = await supabase.from("site_images").select("image_url").eq("key", "hero").single();
+      if (!error && data) return data.image_url;
+    } catch {}
+  }
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem(HERO_IMAGE_KEY);
+}
+
+export async function setHeroImage(imageUrl: string): Promise<void> {
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = createClient();
+      const { data: existing } = await supabase.from("site_images").select("id").eq("key", "hero").single();
+      if (existing) {
+        await supabase.from("site_images").update({ image_url: imageUrl }).eq("key", "hero");
+      } else {
+        await supabase.from("site_images").insert({ key: "hero", image_url: imageUrl });
+      }
+    } catch {}
+  }
+  if (typeof window !== "undefined") {
+    localStorage.setItem(HERO_IMAGE_KEY, imageUrl);
+  }
 }
