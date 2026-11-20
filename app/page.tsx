@@ -19,7 +19,7 @@ export default async function Home() {
       <Header />
       <main className="flex-1">
         {/* Carrusel de promociones */}
-        <section className="py-4 md:py-6">
+        <section className="py-0">
           <PromoCarousel />
         </section>
 
