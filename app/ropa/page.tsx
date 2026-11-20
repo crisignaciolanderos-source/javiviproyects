@@ -9,6 +9,9 @@ export const metadata = {
   description: "Ropa usada seleccionada en excelente estado.",
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function RopaPage() {
   const products = await getProducts("ropa");
   const sizes = Array.from(new Set(products.map((p) => p.size).filter(Boolean)));

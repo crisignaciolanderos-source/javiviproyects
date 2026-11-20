@@ -9,6 +9,9 @@ export const metadata = {
   description: "Cosmética consciente: sérums, cremas y protectores.",
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function CosmeticaPage() {
   const products = await getProducts("cosmetica");
   return (

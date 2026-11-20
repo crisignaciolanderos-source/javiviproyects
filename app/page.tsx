@@ -11,6 +11,9 @@ import HeroImage from "@/components/catalog/hero-image";
 import { getFeatured, getProducts } from "@/lib/products";
 import { whatsappLink } from "@/lib/whatsapp";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function Home() {
   const featured = await getFeatured(4);
 
