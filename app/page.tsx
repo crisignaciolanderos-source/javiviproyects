@@ -34,7 +34,7 @@ export default async function Home() {
                 Cosmetic consciente y Ropa Usada en excelente estado. Compra directo por WhatsApp, sin complicaciones.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/cosmetica" className="bg-ink text-white font-bold uppercase text-[0.875rem] tracking-[-0.03em] px-6 py-3.5 rounded-lg hover:bg-rose transition">
+                <Link href="/cosmetica" className="bg-[#2a2a4a] text-white font-bold uppercase text-[0.875rem] tracking-[-0.03em] px-6 py-3.5 rounded-lg hover:bg-rose transition">
                   Ver cosméticos
                 </Link>
                 <Link href="/ropa" className="bg-[var(--white)] text-ink font-bold uppercase text-[0.875rem] tracking-[-0.03em] px-6 py-3.5 rounded-lg border border-line-2 shadow-sm hover:shadow-md transition">
@@ -82,8 +82,8 @@ export default async function Home() {
                 parallax={0.3}
                 stretch={0.5}
                 fadeColor="#000000"
-                depthFade={0.55}
-                innerShade={0.6}
+                depthFade={0}
+                innerShade={0}
                 cornerRadius={12}
               />
             </div>

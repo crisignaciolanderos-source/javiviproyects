@@ -829,11 +829,8 @@ const CircularCarousel = ({
     const strip = back ? tile.total - 1 - tile.index : tile.index;
     const first = strip === 0;
     const last = strip === tile.total - 1;
-    const r = "var(--cc-radius)";
-    const frameRadius =
-      axis === "x"
-        ? `${first ? r : 0} ${first ? r : 0} ${last ? r : 0} ${last ? r : 0}`
-        : `${first ? r : 0} ${last ? r : 0} ${last ? r : 0} ${first ? r : 0}`;
+    const r = "0";
+    const frameRadius = "0";
     const offset = back ? along - tile.end : tile.start;
     const size = tile.size;
     const box =
@@ -890,7 +887,7 @@ const CircularCarousel = ({
         ...style,
         "--cc-fade": fadeColor,
         "--cc-radius": `${Math.max(0, cornerRadius)}px`,
-        "--cc-inner": (1 - clamp(innerShade, 0, 1)).toFixed(3),
+        "--cc-inner": "0",
       } as React.CSSProperties}
       role="region"
       aria-roledescription="carousel"

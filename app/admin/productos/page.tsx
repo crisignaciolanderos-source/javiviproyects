@@ -35,7 +35,7 @@ export default function ProductosPage() {
         <div className="container mx-auto max-w-[1440px] px-4 md:px-8 py-10">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
             <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">Productos</h1>
-            <Link href="/admin/productos/nuevo" className="bg-ink text-white font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-rose transition w-fit">
+            <Link href="/admin/productos/nuevo" className="bg-[#2a2a4a] text-white font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-rose transition w-fit">
               + Nuevo producto
             </Link>
           </div>

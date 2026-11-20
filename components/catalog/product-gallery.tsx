@@ -32,7 +32,7 @@ export default function ProductGallery({ images, alt }: { images: string[]; alt:
             <button
               key={k}
               onClick={() => setCurrent(k)}
-              className={`w-2.5 h-2.5 rounded-full transition ${k === current ? "bg-ink scale-125" : "bg-line-2 hover:bg-muted"}`}
+              className={`w-2.5 h-2.5 rounded-full transition ${k === current ? "bg-[#2a2a4a] scale-125" : "bg-line-2 hover:bg-muted"}`}
             />
           ))}
         </div>

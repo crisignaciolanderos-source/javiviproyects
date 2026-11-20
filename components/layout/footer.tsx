@@ -12,7 +12,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-3 mt-2">
               {["ig", "tt", "fb", "yt"].map((s) => (
-                <Link key={s} href="#" aria-label={s} className="w-8.5 h-8.5 w-[34px] h-[34px] border border-line-2 rounded-full grid place-items-center text-ink hover:bg-ink hover:text-white hover:border-ink transition text-[0.8rem]">
+                <Link key={s} href="#" aria-label={s} className="w-8.5 h-8.5 w-[34px] h-[34px] border border-line-2 rounded-full grid place-items-center text-ink hover:bg-[#2a2a4a] hover:text-white hover:border-ink transition text-[0.8rem]">
                   {s}
                 </Link>
               ))}

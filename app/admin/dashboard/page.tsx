@@ -40,7 +40,7 @@ export default function DashboardPage() {
               <p className="text-muted text-[0.875rem]">Sesión: {getAdminEmail()}</p>
             </div>
             <div className="flex gap-3">
-              <Link href="/admin/productos/nuevo" className="bg-ink text-white font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-rose transition">
+              <Link href="/admin/productos/nuevo" className="bg-[#2a2a4a] text-white font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-rose transition">
                 + Nuevo producto
               </Link>
               <button

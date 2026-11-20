@@ -16,7 +16,7 @@ export default function Topbar() {
     return () => clearInterval(t);
   }, []);
   return (
-    <div className="bg-ink text-white h-9 w-full flex items-center justify-center overflow-hidden" aria-label="Promociones">
+    <div className="bg-[#2a2a4a] text-white h-9 w-full flex items-center justify-center overflow-hidden" aria-label="Promociones">
       <div className="relative h-9 w-full max-w-[720px]">
         {MESSAGES.map((m, k) => (
           <div

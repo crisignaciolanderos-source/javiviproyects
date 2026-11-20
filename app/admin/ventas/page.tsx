@@ -78,7 +78,7 @@ export default function VentasPage() {
                 <textarea value={notes} onChange={(e) => setNotes(e.target.value)} className="input mt-1 min-h-[70px]" />
               </div>
               {msg && <p className="text-[0.8125rem] font-semibold text-green">{msg}</p>}
-              <button type="submit" className="bg-ink text-white font-bold uppercase text-[0.875rem] tracking-[0.04em] px-6 py-3 rounded-lg hover:bg-rose transition">
+              <button type="submit" className="bg-[#2a2a4a] text-white font-bold uppercase text-[0.875rem] tracking-[0.04em] px-6 py-3 rounded-lg hover:bg-rose transition">
                 Registrar venta
               </button>
               <p className="text-[0.7rem] text-muted">Al registrar, el stock se resta automáticamente. Ropa se marca como vendida.</p>

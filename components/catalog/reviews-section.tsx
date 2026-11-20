@@ -93,7 +93,7 @@ export default function ReviewsSection({ productId }: { productId: string }) {
                 <button
                   type="button"
                   onClick={() => setImage(null)}
-                  className="absolute top-1 right-1 bg-ink text-white w-5 h-5 rounded flex items-center justify-center text-[0.6rem] hover:bg-rose"
+                  className="absolute top-1 right-1 bg-[#2a2a4a] text-white w-5 h-5 rounded flex items-center justify-center text-[0.6rem] hover:bg-rose"
                 >
                   ✕
                 </button>
@@ -104,7 +104,7 @@ export default function ReviewsSection({ productId }: { productId: string }) {
           <button
             type="submit"
             disabled={submitting}
-            className="bg-ink text-white font-bold uppercase text-[0.875rem] tracking-[0.04em] px-6 py-3 rounded-lg hover:bg-rose transition disabled:opacity-60 w-fit"
+            className="bg-[#2a2a4a] text-white font-bold uppercase text-[0.875rem] tracking-[0.04em] px-6 py-3 rounded-lg hover:bg-rose transition disabled:opacity-60 w-fit"
           >
             {submitting ? "Publicando..." : "Publicar reseña"}
           </button>
@@ -119,7 +119,7 @@ export default function ReviewsSection({ productId }: { productId: string }) {
           {reviews.map((r) => (
             <div key={r.id} className="border border-line rounded-xl p-5">
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-full bg-ink text-white grid place-items-center text-[0.75rem] font-bold">
+                <div className="w-8 h-8 rounded-full bg-[#2a2a4a] text-white grid place-items-center text-[0.75rem] font-bold">
                   {r.author_name.charAt(0).toUpperCase()}
                 </div>
                 <div>

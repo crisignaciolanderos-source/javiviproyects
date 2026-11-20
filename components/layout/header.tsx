@@ -9,8 +9,8 @@ export default function Header() {
         </Link>
         <nav className="flex gap-6.5 list-none">
           <ul className="flex gap-[26px] list-none">
-            <li><Link href="/cosmetica" className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] relative py-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-0 after:bg-ink after:transition-all">Cosmética</Link></li>
-            <li><Link href="/ropa" className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] relative py-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-0 after:bg-ink after:transition-all">Ropa</Link></li>
+            <li><Link href="/cosmetica" className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] relative py-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-0 after:bg-[#2a2a4a] after:transition-all">Cosmética</Link></li>
+            <li><Link href="/ropa" className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] relative py-1 hover:after:w-full after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-0 after:bg-[#2a2a4a] after:transition-all">Ropa</Link></li>
           </ul>
         </nav>
       </div>

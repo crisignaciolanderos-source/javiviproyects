@@ -72,7 +72,7 @@ export default function ColorBuySection({ product }: { product: Product }) {
           disabled={!canBuy}
           className={`block w-full text-center font-bold uppercase text-[0.9375rem] tracking-[0.04em] px-6 py-4 rounded-lg min-h-[56px] transition ${
             canBuy
-              ? "bg-ink text-white hover:bg-rose cursor-pointer"
+              ? "bg-[#2a2a4a] text-white hover:bg-rose cursor-pointer"
               : "bg-gray text-muted cursor-not-allowed"
           }`}
         >

@@ -97,7 +97,7 @@ export default function PromocionesPage() {
               </div>
               <button
                 onClick={addNewPromo}
-                className="bg-ink text-white font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-rose transition"
+                className="bg-[#2a2a4a] text-white font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-rose transition"
               >
                 Agregar imagen
               </button>
@@ -125,7 +125,7 @@ export default function PromocionesPage() {
                 <div key={i} className="relative group">
                   <img src={promo.imageUrl} alt="" className="w-full h-48 object-cover rounded border border-line" />
                   {promo.productId && (
-                    <span className="absolute top-1 left-1 bg-ink text-white text-[0.6rem] font-bold px-2 py-0.5 rounded">Producto</span>
+                    <span className="absolute top-1 left-1 bg-[#2a2a4a] text-white text-[0.6rem] font-bold px-2 py-0.5 rounded">Producto</span>
                   )}
                   <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition">
                     <button
@@ -160,7 +160,7 @@ export default function PromocionesPage() {
                     </button>
                     <button
                       onClick={() => removePromo(i)}
-                      className="bg-ink text-white w-8 h-8 rounded flex items-center justify-center hover:bg-rose transition text-[0.6rem]"
+                      className="bg-[#2a2a4a] text-white w-8 h-8 rounded flex items-center justify-center hover:bg-rose transition text-[0.6rem]"
                       title="Eliminar foto"
                     >
                       ✕

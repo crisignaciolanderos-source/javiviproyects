@@ -94,7 +94,7 @@ export default function CategoriasPage() {
                   await setHeroImage(heroImg.trim());
                   setMsg("✓ Imagen del hero guardada.");
                 }}
-                className="bg-ink text-white font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-rose transition w-fit"
+                className="bg-[#2a2a4a] text-white font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-rose transition w-fit"
               >
                 Guardar imagen del hero
               </button>
@@ -125,7 +125,7 @@ export default function CategoriasPage() {
                 </div>
                 <button
                   onClick={() => saveImage("cosmetica")}
-                  className="bg-ink text-white font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-rose transition w-fit"
+                  className="bg-[#2a2a4a] text-white font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-rose transition w-fit"
                 >
                   Guardar imagen
                 </button>
@@ -155,7 +155,7 @@ export default function CategoriasPage() {
                 </div>
                 <button
                   onClick={() => saveImage("ropa")}
-                  className="bg-ink text-white font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-rose transition w-fit"
+                  className="bg-[#2a2a4a] text-white font-bold uppercase text-[0.75rem] tracking-[0.12em] px-4 py-2.5 rounded-lg hover:bg-rose transition w-fit"
                 >
                   Guardar imagen
                 </button>

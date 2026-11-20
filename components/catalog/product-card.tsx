@@ -33,7 +33,7 @@ export default function ProductCard({ product }: { product: Product }) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
           {sold && (
-            <span className="absolute top-3 left-3 bg-ink text-white text-[0.625rem] font-bold uppercase tracking-[0.14em] px-2.5 py-1 rounded">
+            <span className="absolute top-3 left-3 bg-[#2a2a4a] text-white text-[0.625rem] font-bold uppercase tracking-[0.14em] px-2.5 py-1 rounded">
               Vendido
             </span>
           )}
@@ -75,7 +75,7 @@ export default function ProductCard({ product }: { product: Product }) {
               href={whatsappLink(product)}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] bg-ink text-white px-3 py-1.5 rounded hover:bg-rose transition"
+              className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] bg-[#2a2a4a] text-white px-3 py-1.5 rounded hover:bg-rose transition"
             >
               Comprar
             </a>

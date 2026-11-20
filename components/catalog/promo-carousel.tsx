@@ -62,13 +62,13 @@ export default function PromoCarousel() {
 
         <button
           onClick={() => setCurrent((c) => (c === 0 ? promotions.length - 1 : c - 1))}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-ink text-white px-6 py-3 rounded-lg font-bold hover:bg-rose transition z-20 hover:shadow-lg"
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#2a2a4a] text-white px-6 py-3 rounded-lg font-bold hover:bg-rose transition z-20 hover:shadow-lg"
         >
           〈
         </button>
         <button
           onClick={() => setCurrent((c) => (c === promotions.length - 1 ? 0 : c + 1))}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-ink text-white px-6 py-3 rounded-lg font-bold hover:bg-rose transition z-20 hover:shadow-lg"
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#2a2a4a] text-white px-6 py-3 rounded-lg font-bold hover:bg-rose transition z-20 hover:shadow-lg"
         >
           〉
         </button>
@@ -79,7 +79,7 @@ export default function PromoCarousel() {
               key={i}
               onClick={() => setCurrent(i)}
               className={`w-3 h-3 rounded-full transition ${
-                i === current ? "bg-ink w-6" : "bg-line-2 hover:bg-muted"
+                i === current ? "bg-[#2a2a4a] w-6" : "bg-line-2 hover:bg-muted"
               }`}
             />
           ))}

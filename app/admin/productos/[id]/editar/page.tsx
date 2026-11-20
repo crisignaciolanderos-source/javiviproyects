@@ -236,7 +236,7 @@ export default function EditarProductoPage() {
                         onClick={() => {
                           setImages(images.filter((_, idx) => idx !== i));
                         }}
-                        className="bg-ink text-white w-6 h-6 rounded flex items-center justify-center hover:bg-rose transition text-[0.6rem]"
+                        className="bg-[#2a2a4a] text-white w-6 h-6 rounded flex items-center justify-center hover:bg-rose transition text-[0.6rem]"
                         title="Eliminar foto"
                       >
                         ✕
@@ -259,7 +259,7 @@ export default function EditarProductoPage() {
             </div>
             {error && <p className="text-red text-[0.8125rem]">{error}</p>}
             <div className="flex gap-3">
-              <button type="submit" className="bg-ink text-white font-bold uppercase text-[0.875rem] tracking-[0.04em] px-6 py-3 rounded-lg hover:bg-rose transition">
+              <button type="submit" className="bg-[#2a2a4a] text-white font-bold uppercase text-[0.875rem] tracking-[0.04em] px-6 py-3 rounded-lg hover:bg-rose transition">
                 Guardar cambios
               </button>
               <Link href="/admin/productos" className="border border-line-2 text-ink font-bold uppercase text-[0.875rem] tracking-[0.04em] px-6 py-3 rounded-lg hover:bg-[var(--gray)] transition">

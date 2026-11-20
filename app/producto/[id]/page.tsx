@@ -115,7 +115,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "56XXXXXXXXX"}?text=${encodeURIComponent("Hola JAVIVI! Me interesa este producto: " + product.name)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 bg-ink text-white font-bold uppercase text-[0.875rem] py-3 rounded-lg text-center min-h-[46px] flex items-center justify-center"
+            className="flex-1 bg-[#2a2a4a] text-white font-bold uppercase text-[0.875rem] py-3 rounded-lg text-center min-h-[46px] flex items-center justify-center"
           >
             Comprar
           </a>
