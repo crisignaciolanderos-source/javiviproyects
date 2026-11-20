@@ -210,7 +210,13 @@ export async function getPromotions(): Promise<Promotion[]> {
     try {
       const supabase = createClient();
       const { data, error } = await supabase.from("promotions").select("*").order("created_at", { ascending: false });
-      if (!error && data) return data as Promotion[];
+      if (!error && data) {
+        return data.map((d: any) => ({
+          id: d.id,
+          imageUrl: d.image_url || d.imageUrl,
+          productId: d.product_id || d.productId || null,
+        })) as Promotion[];
+      }
     } catch {}
   }
   return [...demoPromotions];

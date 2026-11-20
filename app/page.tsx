@@ -19,7 +19,7 @@ export default async function Home() {
       <Header />
       <main className="flex-1">
         {/* Carrusel de promociones */}
-        <section className="py-6 md:py-8">
+        <section className="py-4 md:py-6">
           <PromoCarousel />
         </section>
 
@@ -47,9 +47,6 @@ export default async function Home() {
             </div>
           </div>
         </section>
-
-        {/* Categorías */}
-        <CategorySection />
 
         {/* Destacados */}
         <section className="py-10 md:py-14 bg-[var(--gray)]">
@@ -89,6 +86,9 @@ export default async function Home() {
             </div>
           </div>
         </section>
+
+        {/* Categorías */}
+        <CategorySection />
 
       </main>
       <Footer />
