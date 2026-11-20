@@ -56,7 +56,7 @@ export default function PromoCarousel() {
   return (
     <section className="relative overflow-hidden bg-[var(--white)]">
       <div
-        className="relative h-[350px] md:h-[450px] cursor-grab active:cursor-grabbing"
+        className="relative aspect-[4/3] md:h-[450px] cursor-grab active:cursor-grabbing"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
@@ -71,7 +71,7 @@ export default function PromoCarousel() {
             return (
               <div
                 key={i}
-                className="min-w-full flex-shrink-0 h-full flex items-center justify-center"
+                className="min-w-full flex-shrink-0 h-full flex items-center justify-center bg-[var(--gray)]"
               >
                 {link ? (
                   <Link href={link} className="block w-full h-full" draggable={false}>
@@ -80,7 +80,7 @@ export default function PromoCarousel() {
                       alt={`Promoción ${i + 1}`}
                       fill
                       sizes="100vw"
-                      className="object-cover w-full h-full cursor-pointer"
+                      className="object-contain w-full h-full cursor-pointer"
                       loading="lazy"
                       draggable={false}
                     />
@@ -91,7 +91,7 @@ export default function PromoCarousel() {
                     alt={`Promoción ${i + 1}`}
                     fill
                     sizes="100vw"
-                    className="object-cover w-full h-full"
+                    className="object-contain w-full h-full"
                     loading="lazy"
                     draggable={false}
                   />
