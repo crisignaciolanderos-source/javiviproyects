@@ -79,7 +79,7 @@ export default function PromoCarousel() {
                       src={promo.imageUrl}
                       alt={`Promoción ${i + 1}`}
                       fill
-                      sizes="100vw"
+                      sizes="(max-width:768px) 100vw, 80vw"
                       className="object-contain w-full h-full cursor-pointer"
                       loading="lazy"
                       draggable={false}

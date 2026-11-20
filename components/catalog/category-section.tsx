@@ -29,7 +29,7 @@ export default function CategorySection() {
         <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-6">Explora por categoría</h2>
         <div className="grid md:grid-cols-2 gap-6">
           <Link href="/cosmetica" className="group relative overflow-hidden rounded-2xl border border-line aspect-[16/9] md:aspect-[4/3]">
-            <Image src={cosImg} alt="Cosmética" fill className="object-cover group-hover:scale-105 transition duration-500" />
+            <Image src={cosImg} alt="Cosmética" fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
             <div className="absolute bottom-6 left-6 text-white">
               <p className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] mb-1">Cuidado de la piel</p>
@@ -37,7 +37,7 @@ export default function CategorySection() {
             </div>
           </Link>
           <Link href="/ropa" className="group relative overflow-hidden rounded-2xl border border-line aspect-[16/9] md:aspect-[4/3]">
-            <Image src={ropImg} alt="Ropa" fill className="object-cover group-hover:scale-105 transition duration-500" />
+            <Image src={ropImg} alt="Ropa" fill sizes="(max-width:768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
             <div className="absolute bottom-6 left-6 text-white">
               <p className="text-[0.6875rem] font-bold uppercase tracking-[0.16em] mb-1">Prendas únicas</p>
