@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import { getAdminProducts, deleteProduct, updateProduct } from "@/lib/admin-store";
+import { getAdminProducts, deleteProduct, updateProduct, toggleFeatured } from "@/lib/admin-store";
 import type { Product } from "@/types";
 import { formatCLP } from "@/lib/utils";
 
@@ -50,6 +50,7 @@ export default function ProductosPage() {
                   <th className="py-2 pr-3">Stock</th>
                   <th className="py-2 pr-3">Estado</th>
                   <th className="py-2 pr-3">Activo</th>
+                  <th className="py-2 pr-3">Destacado</th>
                   <th className="py-2 pr-3">Acciones</th>
                 </tr>
               </thead>
@@ -70,6 +71,18 @@ export default function ProductosPage() {
                       >
                         {p.active ? "Activo" : "Inactivo"}
                       </button>
+                    </td>
+                    <td className="py-3 pr-3">
+                      <input
+                        type="checkbox"
+                        checked={p.featured}
+                        onChange={async () => {
+                          await toggleFeatured(p.id);
+                          refresh();
+                        }}
+                        className="w-5 h-5 rounded border border-line-2 text-ink focus:ring-0 cursor-pointer"
+                        title="Marcar como destacado"
+                      />
                     </td>
                     <td className="py-3 pr-3 flex gap-2">
                       <Link href={`/admin/productos/${p.id}/editar`} className="text-ink hover:underline font-semibold">Editar</Link>
