@@ -76,7 +76,7 @@ export async function getAdminProducts(): Promise<Product[]> {
   if (isSupabaseConfigured()) {
     try {
       const supabase = createClient();
-      const { data, error } = await supabase.from("products").select("*").order("created_at", { ascending: false });
+      const { data, error } = await supabase.from("products").select("id, name, description, price, original_price, category, size, condition, images, stock, sold, active, featured, colors, whatsapp_message, usage_instructions, created_at").order("created_at", { ascending: false });
       if (!error && data) return data as Product[];
     } catch {}
   }
@@ -87,7 +87,7 @@ export async function getAdminProduct(id: string): Promise<Product | undefined> 
   if (isSupabaseConfigured()) {
     try {
       const supabase = createClient();
-      const { data } = await supabase.from("products").select("*").eq("id", id).single();
+      const { data } = await supabase.from("products").select("id, name, description, price, original_price, category, size, condition, images, stock, sold, active, featured, colors, whatsapp_message, usage_instructions, created_at").eq("id", id).single();
       if (data) return data as Product;
     } catch {}
   }
@@ -139,7 +139,7 @@ export async function registerSale(input: { product_id: string; buyer_name: stri
     try {
       const supabase = createClient();
       // Obtener producto
-      const { data: product } = await supabase.from("products").select("*").eq("id", input.product_id).single();
+      const { data: product } = await supabase.from("products").select("id, name, category, stock, price").eq("id", input.product_id).single();
       if (!product) return null;
       // Insertar venta
       const { data: sale } = await supabase.from("sales").insert({
@@ -209,7 +209,7 @@ export async function getPromotions(): Promise<Promotion[]> {
   if (isSupabaseConfigured()) {
     try {
       const supabase = createClient();
-      const { data, error } = await supabase.from("promotions").select("*").order("created_at", { ascending: false });
+      const { data, error } = await supabase.from("promotions").select("id, image_url, product_id, active, created_at").order("created_at", { ascending: false });
       if (!error && data) {
         return data.map((d: any) => ({
           id: d.id,
@@ -271,7 +271,7 @@ export async function getFeaturedProducts(): Promise<Product[]> {
   if (isSupabaseConfigured()) {
     try {
       const supabase = createClient();
-      const { data, error } = await supabase.from("products").select("*").eq("featured", true).eq("active", true).eq("sold", false);
+      const { data, error } = await supabase.from("products").select("id, name, description, price, original_price, category, size, condition, images, stock, sold, active, featured, created_at").eq("featured", true).eq("active", true).eq("sold", false);
       if (!error && data) return data as Product[];
     } catch {}
   }
@@ -300,7 +300,7 @@ export async function getReviews(productId: string): Promise<Review[]> {
   if (isSupabaseConfigured()) {
     try {
       const supabase = createClient();
-      const { data, error } = await supabase.from("reviews").select("*").eq("product_id", productId).order("created_at", { ascending: false });
+      const { data, error } = await supabase.from("reviews").select("id, product_id, author_name, text, image_url, created_at").eq("product_id", productId).order("created_at", { ascending: false });
       if (!error && data) return data as Review[];
     } catch {}
   }
@@ -348,7 +348,7 @@ export async function getCategoryImages(): Promise<CategoryImage[]> {
   if (isSupabaseConfigured()) {
     try {
       const supabase = createClient();
-      const { data, error } = await supabase.from("category_images").select("*");
+      const { data, error } = await supabase.from("category_images").select("category, image_url");
       if (!error && data) {
         return data.map((d: any) => ({
           category: d.category,
